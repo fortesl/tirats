@@ -1,0 +1,22 @@
+{
+  "name": "tirats-math",
+  "version": "1.0.0",
+  "description": "Tirat's Math",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fortesl/tirats.git"
+  },
+  "keywords": [
+    "Math"
+  ],
+  "author": "fortesl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fortesl/tirats/issues"
+  },
+  "homepage": "https://github.com/fortesl/tirats#readme"
+}

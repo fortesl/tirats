@@ -1,0 +1,21 @@
+{
+  "name": "tirats-math",
+  "description": "Tirat's Math",
+  "main": "index.js",
+  "authors": [
+    "fortesl"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Math"
+  ],
+  "moduleType": [],
+  "homepage": "http://tirats.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
