@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tirats">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Tirat's Math</title>
+    <link type="text/css" rel="stylesheet" href="dist/css/tirats.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="app-title">Tirat's Math</div>
+            <div class="app-nav-links">
+                <ul class="navbar">
+                    <li><a href="#/addition">Addition</a></li>
+                    <li><a href="#/addition">Subtraction</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <ng-view></ng-view>
+    </div>
+
+    <script src="./dist/logic/thirdParty.js"></script>
+    <script src="./dist/logic/tirats.js"></script>
+</body>
+</html>

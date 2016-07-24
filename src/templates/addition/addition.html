@@ -1,0 +1,19 @@
+<div class="row app-addition">
+    <div class="col-sm-6 app-operation">
+        <div>Addition</div>
+        <div ng-repeat="number in additionCtrl.operands">
+            <div class="app-operand" ng-if="$index===additionCtrl.numberOfOperands -1">+ {{number.value}}</div>
+            <div class="app-operand" ng-if="$index!==additionCtrl.numberOfOperands -1">{{number.value}}</div>
+        </div>
+        <div>------------</div>
+        <form class="app-form" name="calcForm" novalidate ng-submit="additionCtrl.checkAnswer()">
+            <input class="app-input" ng-model="additionCtrl.answer"  size="10" autofocus required ng-pattern=""/>
+            <div>
+                <input ng-disabled="calcForm.$invalid || additionCtrl.notEvenClose()" type="submit" class="btn">
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6 app-user-id">
+        {{additionCtrl.userName}} | {{ additionCtrl.userScore}}
+    </div>
+</div>
