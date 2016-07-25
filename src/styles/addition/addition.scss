@@ -2,15 +2,27 @@
   text-align: right;
   .app-operation {
     .app-input {
-      padding-right: 1em;
-      text-align: right;
-      margin-bottom: 1em;
+      width:1.5em;
+      margin: 0.1em;
+      padding: 0em;
+      text-align: center;
+      border: 0em;
+      position: relative;
+      top: -1em;
+      left: -0.15em;
     }
     .app-operand {
-      padding-right: 1em;
+      letter-spacing: 1em;
+    }
+    .app-answer-separator {
+      position: relative;
+      top: -1em;
     }
   }
-  .app-user-id {
+  .app-instruction {
+    text-align: center;
+  }
+  .app-score {
     padding-right: 2em;
   }
 }

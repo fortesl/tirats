@@ -4,11 +4,18 @@
 (function () {
     'use strict';
 
-    angular.module('tirats').controller('additionController', ['mathServices', 'toastr', '$cookies', function(mathServices, toastr, $cookies) {
+    angular.module('tirats').controller('additionController', ['mathServices', 'toastr', '$cookies', '$scope',
+        function(mathServices, toastr, $cookies, $scope) {
         var self = this;
 
         self.checkAnswer = function () {
-            if (Number(self.answer) === self.correctAnswer) {
+            var goodAnswer = true;
+            angular.forEach(self.answer, function(digit) {
+                if (digit.inputValue !== digit.correctValue) {
+                    goodAnswer = false;
+                }
+            });
+            if (goodAnswer) {
                 toastr.success('You got it', self.answer);
                 self.init();
                 self.userScore++;
@@ -22,11 +29,25 @@
             $cookies.put(mathServices.userName+mathServices.userLesson+'Score', self.userScore);
             $cookies.put(mathServices.userName+mathServices.userLesson+'Correct', self.currentCorrect);
             $cookies.put(mathServices.userName+mathServices.userLesson+'Wrong', self.currentWrong);
-            angular.element('.app-input').focus();
+            self.setElementFocus(self.answer.length-1);
+        };
+
+        var buildExpectedAnswer = function() {
+            var correctAnswerDigits = self.correctAnswer.toString().split('');
+            var numberOfExpectedDigits = correctAnswerDigits.length;
+
+            self.answer = [];
+            for (var i = 0; i < numberOfExpectedDigits; i++) {
+                var answerDigit = {
+                    position: i,
+                    correctValue: correctAnswerDigits[i],
+                    inputValue: ''
+                };
+                self.answer.push(answerDigit);
+            }
         };
 
         self.init = function() {
-            self.answer = '';
             self.correctAnswer=0;
             self.userScore = $cookies.get(mathServices.userName+mathServices.userLesson+'Score') || 0;
             self.currentCorrect = $cookies.get(mathServices.userName+mathServices.userLesson+'Correct') || 0;
@@ -40,10 +61,19 @@
             for (var i = 0; i< self.numberOfOperands; i++) {
                 self.correctAnswer += self.operands[i].value;
             }
+            buildExpectedAnswer();
         };
 
-        self.notEvenClose = function () {
-            return self.answer < self.operands[0].value;
+        self.setElementFocus = function(position) {
+            window.setTimeout(function() {
+                angular.element('.app-input.' + position).focus();
+            },100);
+        };
+
+        self.gotInput = function(position) {
+            if (self.answer[position].inputValue) {
+                self.setElementFocus(position-1);
+            }
         };
 
         self.init();

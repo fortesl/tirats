@@ -24,7 +24,7 @@
         angular.extend(toastrConfig, {
             positionClass: 'toast-middle-right',
             maxOpened: 1,
-            target: '.app-operation'
+            target: '.app-form'
         });
     });
 
