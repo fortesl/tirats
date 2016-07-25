@@ -11,11 +11,11 @@
             $routeProvider
                 .when('/addition', {
                     controller: 'additionController as additionCtrl',
-                    templateUrl: '/src/templates/addition/addition.html'
+                    templateUrl: 'addition/addition.html'
                 })
                 .when('/subtraction', {
                     controller: 'subtractionController as subtractionCtrl',
-                    templateUrl: '/src/templates/subtractions/subtraction.html'
+                    templateUrl: 'subtractions/subtraction.html'
                 })
                 .otherwise({redirectTo: '/addition'});
         });
@@ -29,6 +29,7 @@
     });
 
 })();
+angular.module('tirats').run(['$templateCache', function($templateCache) {$templateCache.put('addition/addition.html','<div class="app-lesson-jumbotron">\r\n    <div class="app-jumbotron-content">\r\n        <div class="app-user-name">{{additionCtrl.userName}}</div>\r\n        <div class="app-lesson-title">Addition</div>\r\n        <div class="app-lesson-description">Numbers between 0 and 200</div>\r\n    </div>\r\n</div>\r\n<div class="row app-addition">\r\n    <div class="col-sm-6 app-operation">\r\n        <div class="app-instruction">\r\n            Please Solve:\r\n        </div>\r\n        <div ng-repeat="number in additionCtrl.operands">\r\n            <div class="app-operand" ng-if="$index===additionCtrl.numberOfOperands -1">+ {{number.value}}</div>\r\n            <div class="app-operand" ng-if="$index!==additionCtrl.numberOfOperands -1">{{number.value}}</div>\r\n        </div>\r\n        <div class="app-answer-separator">______________</div>\r\n        <form class="app-form" name="calcForm" novalidate ng-submit="additionCtrl.checkAnswer()">\r\n            <input class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required\r\n               ng-repeat="digit in additionCtrl.answer | orderBy:digit.position"\r\n               ng-change="additionCtrl.gotInput(digit.position);"/>\r\n            <div>\r\n                <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary">\r\n            </div>\r\n        </form>\r\n    </div>\r\n    <div class="col-sm-6 app-score">\r\n        Score: {{ additionCtrl.userScore}}\r\n    </div>\r\n</div>\r\n<div ng-init="additionCtrl.setElementFocus(additionCtrl.answer.length-1)"></div>');}]);
 /**
  * Created by lfortes on 7/23/2016.
  */
