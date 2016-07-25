@@ -34,7 +34,7 @@
 
     gulp.task('buildAppTemplates', function () {
         return gulp.src('./src/templates/**/*.html')
-            .pipe(plugins.templateCache('markdownLlc.templates.js', { module: 'tirats' }))
+            .pipe(plugins.templateCache('tirats.templates.js', { module: 'tirats' }))
             .pipe(gulp.dest(resourceFolders.distJs));
     });
 

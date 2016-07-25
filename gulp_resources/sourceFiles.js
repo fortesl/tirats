@@ -25,6 +25,7 @@
         },
         app: [
             'src/scripts/app.js',
+            'dist/logic/tirats.templates.js',
             'src/scripts/mathServices.js',
             'src/scripts/addition/**/*.js'
         ]
