@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0afea3fa-3332-4c0c-8e94-aa8add7074ae" name="Default" comment="css styling">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Tirats Math.iml" afterPath="$PROJECT_DIR$/.idea/Tirats Math.iml" />
+    <list default="true" id="0afea3fa-3332-4c0c-8e94-aa8add7074ae" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/addition/addition.js" afterPath="$PROJECT_DIR$/src/scripts/addition/addition.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/app.js" afterPath="$PROJECT_DIR$/src/scripts/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/addition/addition.scss" afterPath="$PROJECT_DIR$/src/styles/addition/addition.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/app.scss" afterPath="$PROJECT_DIR$/src/styles/app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/addition/addition.html" afterPath="$PROJECT_DIR$/src/templates/addition/addition.html" />
     </list>
     <ignored path="Tirats Math.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -337,7 +330,7 @@
       <workItem from="1469284954670" duration="2961000" />
       <workItem from="1469292225768" duration="39612000" />
       <workItem from="1469393945899" duration="3430000" />
-      <workItem from="1469409096957" duration="18110000" />
+      <workItem from="1469409096957" duration="18481000" />
     </task>
     <task id="LOCAL-00001" summary="Added additionController and mathServices">
       <created>1469342123849</created>
@@ -346,11 +339,18 @@
       <option name="project" value="LOCAL" />
       <updated>1469342123849</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="css styling">
+      <created>1469456350580</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1469456350580</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64113000" />
+    <option name="totallyTimeSpent" value="64484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
