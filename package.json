@@ -1,0 +1,35 @@
+{
+  "name": "tirats-math",
+  "version": "1.0.0",
+  "description": "Tirat's Math",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fortesl/tirats.git"
+  },
+  "keywords": [
+    "Math"
+  ],
+  "author": "fortesl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fortesl/tirats/issues"
+  },
+  "homepage": "https://github.com/fortesl/tirats#readme",
+  "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^4.1.0",
+    "gulp-copy": "0.0.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-replace": "^0.5.4",
+    "gulp-ruby-sass": "^2.0.6",
+    "jshint": "^2.9.2"
+  }
+}

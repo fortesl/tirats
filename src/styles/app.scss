@@ -1,0 +1,44 @@
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap-compass";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "addition/addition";
+
+$app-background-color: lightblue;
+$app-color: grey;
+
+$app-font-size: 13pt;
+$app-font-size-l: $app-font-size + 2;
+$app-font-size-xl: $app-font-size + 4;
+$app-font-size-xxl: $app-font-size + 6;
+$app-font-size-xxxl: $app-font-size + 8;
+$app-font-size-xxxxl: $app-font-size + 10;
+$app-font-size-s: $app-font-size - 2;
+$app-font-size-xs: $app-font-size - 4;
+
+.app-body {
+  background-color: lighten($app-background-color, 10%);
+  color: darken($app-color, 10%);
+  font-size: $app-font-size-l;
+  font-weight: bolder;
+}
+
+.app-lesson-jumbotron {
+  @extend .jumbotron;
+  height: 8em;
+  background-color: darken($app-background-color, 10%);
+  .app-jumbotron-content {
+    position: relative;
+    top: -2em;
+    .app-user-name {
+      text-align: right;
+      font-size: $app-font-size-xl;
+    }
+    .app-lesson-title {
+      text-align: center;
+      font-size: $app-font-size-xxxxl;
+    }
+    .app-lesson-description {
+      text-align: center;
+      font-size: $app-font-size-xxl;
+    }
+  }
+}
