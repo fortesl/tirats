@@ -97,6 +97,7 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
     angular.module('tirats').controller('additionController', ['mathServices', 'toastr', '$cookies',
         function(mathServices, toastr, $cookies) {
         var self = this;
+        self.previousAnswer=true;
 
         self.checkAnswer = function () {
             var goodAnswer = true;
@@ -113,9 +114,12 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
             }
             else {
                 toastr.error('Not quite');
-                self.userScore--;
-                self.currentWrong++;
+                if (self.previousAnswer === true) {
+                    self.userScore--;
+                    self.currentWrong++;
+                }
             }
+            self.previousAnswer = goodAnswer;
             $cookies.put(mathServices.userName+mathServices.userLesson+'Score', self.userScore);
             $cookies.put(mathServices.userName+mathServices.userLesson+'Correct', self.currentCorrect);
             $cookies.put(mathServices.userName+mathServices.userLesson+'Wrong', self.currentWrong);
@@ -179,6 +183,7 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
     angular.module('tirats').controller('subtractionController', ['mathServices', 'toastr', '$cookies',
         function(mathServices, toastr, $cookies) {
             var self = this;
+            self.previousAnswer=true;
 
             self.checkAnswer = function () {
                 var goodAnswer = true;
@@ -195,9 +200,12 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
                 }
                 else {
                     toastr.error('Not quite');
-                    self.userScore--;
-                    self.currentWrong++;
+                    if (self.previousAnswer===true) {
+                        self.userScore--;
+                        self.currentWrong++;
+                    }
                 }
+                self.previousAnswer = goodAnswer;
                 $cookies.put(mathServices.userName+mathServices.userLesson+'Score', self.userScore);
                 $cookies.put(mathServices.userName+mathServices.userLesson+'Correct', self.currentCorrect);
                 $cookies.put(mathServices.userName+mathServices.userLesson+'Wrong', self.currentWrong);
