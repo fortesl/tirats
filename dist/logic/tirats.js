@@ -25,7 +25,7 @@
 
     app.config(function(toastrConfig) {
         angular.extend(toastrConfig, {
-            positionClass: 'toast-middle-right',
+            positionClass: 'toast-top-full-width',
             maxOpened: 1,
             target: '.app-form'
         });
@@ -207,18 +207,28 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
             var buildExpectedAnswer = function() {
                 self.operands = mathServices.operands;
                 self.numberOfOperands = mathServices.operands.length;
-                self.correctAnswer= self.operands[0].value;
+
+                var correctAnswer= self.operands[0].value;
                 var i;
                 for (i = 1; i< self.numberOfOperands; i++) {
-                    self.correctAnswer -= self.operands[i].value;
+                    correctAnswer -= self.operands[i].value;
                 }
-                var correctAnswerDigits = self.correctAnswer.toString().split('');
+                var correctAnswerDigits = correctAnswer.toString().split('');
                 var numberOfExpectedDigits = correctAnswerDigits.length;
 
                 self.answer = [];
+                var zeroDigits = self.operands[0].value.toString().length - numberOfExpectedDigits;
+
+                for (i = 0; i < zeroDigits; i++) {//Answer has fewer digits fill 0s to the left
+                    self.answer.push({
+                        position: i,
+                        correctValue: '0',
+                        inputValue: ''
+                    });
+                }
                 for (i = 0; i < numberOfExpectedDigits; i++) {
                     var answerDigit = {
-                        position: i,
+                        position: i+zeroDigits,
                         correctValue: correctAnswerDigits[i],
                         inputValue: ''
                     };
