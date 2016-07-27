@@ -14,7 +14,8 @@
         styles: './src/styles/',
         scripts: './src/scripts/',
         distJs: './dist/logic/',
-        distStyles: './dist/css/'
+        distStyles: './dist/css/',
+        deploy: '../tirats-gh-pages/dist/'
     };
 
     gulp.task('build', ['buildAppThirdPartyJs', 'buildAppTemplates', 'buildAppJs', 'buildAppStyle']);
@@ -24,6 +25,16 @@
     gulp.task('watch', function () {
         gulp.watch(sources.app.concat('./src/templates/**/*.html'), ['lint', 'buildAppTemplates', 'buildAppJs']);
         gulp.watch('./src/styles/**/*.scss', ['buildAppStyle']);
+    });
+
+    gulp.task('deployAppJs', function() {
+        return gulp.src(resourceFolders.distJs + 'tirats.js')
+            .pipe(plugins.copy(resourceFolders.deploy + 'logic/', { prefix: 4 }));
+    });
+
+    gulp.task('deployAppStyle', function() {
+        return gulp.src(resourceFolders.distStyles + 'tirats.css')
+            .pipe(plugins.copy(resourceFolders.deploy + 'css/', { prefix: 4 }));
     });
 
     gulp.task('buildAppJs', ['buildAppTemplates'], function () {

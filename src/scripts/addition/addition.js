@@ -4,9 +4,10 @@
 (function () {
     'use strict';
 
-    angular.module('tirats').controller('additionController', ['mathServices', 'toastr', '$cookies', '$scope',
-        function(mathServices, toastr, $cookies, $scope) {
+    angular.module('tirats').controller('additionController', ['mathServices', 'toastr', '$cookies',
+        function(mathServices, toastr, $cookies) {
         var self = this;
+        self.previousAnswer=true;
 
         self.checkAnswer = function () {
             var goodAnswer = true;
@@ -23,9 +24,12 @@
             }
             else {
                 toastr.error('Not quite');
-                self.userScore--;
-                self.currentWrong++;
+                if (self.previousAnswer === true) {
+                    self.userScore--;
+                    self.currentWrong++;
+                }
             }
+            self.previousAnswer = goodAnswer;
             $cookies.put(mathServices.userName+mathServices.userLesson+'Score', self.userScore);
             $cookies.put(mathServices.userName+mathServices.userLesson+'Correct', self.currentCorrect);
             $cookies.put(mathServices.userName+mathServices.userLesson+'Wrong', self.currentWrong);
@@ -33,6 +37,24 @@
         };
 
         var buildExpectedAnswer = function() {
+            self.operands = mathServices.operands;
+
+            // //test
+            // self.operands = [{
+            //         value: 824
+            //     },
+            //     {
+            //         value: 990
+            //     }
+            // ];
+            //
+
+            self.numberOfOperands = mathServices.operands.length;
+            self.correctAnswer=0;
+            for (var i = 0; i< self.numberOfOperands; i++) {
+                self.correctAnswer += self.operands[i].value;
+            }
+
             var correctAnswerDigits = self.correctAnswer.toString().split('');
             var numberOfExpectedDigits = correctAnswerDigits.length;
 
@@ -48,19 +70,13 @@
         };
 
         self.init = function() {
-            self.correctAnswer=0;
+            mathServices.getOperands('ADDITION');
+
             self.userScore = $cookies.get(mathServices.userName+mathServices.userLesson+'Score') || 0;
             self.currentCorrect = $cookies.get(mathServices.userName+mathServices.userLesson+'Correct') || 0;
             self.currentWrong = $cookies.get(mathServices.userName+mathServices.userLesson+'Wrong') || 0;
             self.userName = mathServices.userName;
-            mathServices.getOperands();
 
-
-            self.operands = mathServices.operands;
-            self.numberOfOperands = mathServices.operands.length;
-            for (var i = 0; i< self.numberOfOperands; i++) {
-                self.correctAnswer += self.operands[i].value;
-            }
             buildExpectedAnswer();
         };
 

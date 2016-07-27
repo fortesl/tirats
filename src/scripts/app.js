@@ -9,20 +9,23 @@
 
     app.config(function($routeProvider) {
             $routeProvider
+                .when('/', {
+                    templateUrl: 'landing/landing.html'
+                })
                 .when('/addition', {
                     controller: 'additionController as additionCtrl',
-                    templateUrl: '/src/templates/addition/addition.html'
+                    templateUrl: 'addition/addition.html'
                 })
                 .when('/subtraction', {
                     controller: 'subtractionController as subtractionCtrl',
-                    templateUrl: '/src/templates/subtractions/subtraction.html'
+                    templateUrl: 'subtraction/subtraction.html'
                 })
-                .otherwise({redirectTo: '/addition'});
+                .otherwise({redirectTo: '/'});
         });
 
     app.config(function(toastrConfig) {
         angular.extend(toastrConfig, {
-            positionClass: 'toast-middle-right',
+            positionClass: 'toast-top-full-width',
             maxOpened: 1,
             target: '.app-form'
         });

@@ -1,15 +1,17 @@
 <div class="app-lesson-jumbotron">
     <div class="app-jumbotron-content">
-        <div class="app-user-name">{{additionCtrl.userName}}</div>
+        <div class="app-user-name"><a href="#/">{{additionCtrl.userName}}</a></div>
         <div class="app-lesson-title">Addition</div>
         <div class="app-lesson-description">Numbers between 0 and 200</div>
     </div>
 </div>
+<div class="row">
+    <div class="app-score">
+        Score: {{ additionCtrl.userScore}}
+    </div>
+</div>
 <div class="row app-addition">
     <div class="col-sm-6 app-operation">
-        <div class="app-instruction">
-            Please Solve:
-        </div>
         <div ng-repeat="number in additionCtrl.operands">
             <div class="app-operand" ng-if="$index===additionCtrl.numberOfOperands -1">+ {{number.value}}</div>
             <div class="app-operand" ng-if="$index!==additionCtrl.numberOfOperands -1">{{number.value}}</div>
@@ -24,8 +26,7 @@
             </div>
         </form>
     </div>
-    <div class="col-sm-6 app-score">
-        Score: {{ additionCtrl.userScore}}
+    <div class="col-sm-6">
     </div>
 </div>
 <div ng-init="additionCtrl.setElementFocus(additionCtrl.answer.length-1)"></div>
