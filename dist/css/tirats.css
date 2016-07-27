@@ -6208,8 +6208,6 @@ button.close {
     top: -1em; }
   .app-addition .app-instruction {
     text-align: center; }
-  .app-addition .app-score {
-    padding-right: 2em; }
 
 .app-body {
   background-color: #d4ebf2;
@@ -6218,17 +6216,21 @@ button.close {
   font-weight: bolder; }
 
 .app-lesson-jumbotron {
-  height: 8em;
+  height: 5em;
   background-color: #86c5da; }
   .app-lesson-jumbotron .app-jumbotron-content {
     position: relative;
     top: -2em; }
     .app-lesson-jumbotron .app-jumbotron-content .app-user-name {
       text-align: right;
-      font-size: 17pt; }
+      font-size: 15pt; }
     .app-lesson-jumbotron .app-jumbotron-content .app-lesson-title {
       text-align: center;
-      font-size: 23pt; }
+      font-size: 17pt; }
     .app-lesson-jumbotron .app-jumbotron-content .app-lesson-description {
       text-align: center;
-      font-size: 19pt; }
+      font-size: 13pt; }
+
+.app-score {
+  padding-left: 2em;
+  margin-bottom: 2em; }
