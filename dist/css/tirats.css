@@ -1889,24 +1889,24 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
-.container {
+.container, .app-container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container:before, .container:after {
+  .container:before, .app-container:before, .container:after, .app-container:after {
     content: " ";
     display: table; }
-  .container:after {
+  .container:after, .app-container:after {
     clear: both; }
   @media (min-width: 768px) {
-    .container {
+    .container, .app-container {
       width: 750px; } }
   @media (min-width: 992px) {
-    .container {
+    .container, .app-container {
       width: 970px; } }
   @media (min-width: 1200px) {
-    .container {
+    .container, .app-container {
       width: 1170px; } }
 
 .container-fluid {
@@ -4119,15 +4119,17 @@ tbody.collapse.in {
     .navbar-fixed-bottom .navbar-collapse {
       max-height: 200px; } }
 
-.container > .navbar-header,
+.container > .navbar-header, .app-container > .navbar-header,
 .container > .navbar-collapse,
+.app-container > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
-    .container > .navbar-header,
+    .container > .navbar-header, .app-container > .navbar-header,
     .container > .navbar-collapse,
+    .app-container > .navbar-collapse,
     .container-fluid > .navbar-header,
     .container-fluid > .navbar-collapse {
       margin-right: 0;
@@ -4171,7 +4173,7 @@ tbody.collapse.in {
   .navbar-brand > img {
     display: block; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    .navbar > .container .navbar-brand, .navbar > .app-container .navbar-brand, .navbar > .container-fluid .navbar-brand {
       margin-left: -15px; } }
 
 .navbar-toggle {
@@ -4688,17 +4690,17 @@ a.badge:hover, a.badge:focus {
     font-weight: 200; }
   .jumbotron > hr, .app-lesson-jumbotron > hr {
     border-top-color: #d5d5d5; }
-  .container .jumbotron, .container .app-lesson-jumbotron, .container-fluid .jumbotron, .container-fluid .app-lesson-jumbotron {
+  .container .jumbotron, .app-container .jumbotron, .container .app-lesson-jumbotron, .app-container .app-lesson-jumbotron, .container-fluid .jumbotron, .container-fluid .app-lesson-jumbotron {
     border-radius: 6px;
     padding-left: 15px;
     padding-right: 15px; }
-  .jumbotron .container, .app-lesson-jumbotron .container {
+  .jumbotron .container, .app-lesson-jumbotron .container, .jumbotron .app-container, .app-lesson-jumbotron .app-container {
     max-width: 100%; }
   @media screen and (min-width: 768px) {
     .jumbotron, .app-lesson-jumbotron {
       padding-top: 48px;
       padding-bottom: 48px; }
-      .container .jumbotron, .container .app-lesson-jumbotron, .container-fluid .jumbotron, .container-fluid .app-lesson-jumbotron {
+      .container .jumbotron, .app-container .jumbotron, .container .app-lesson-jumbotron, .app-container .app-lesson-jumbotron, .container-fluid .jumbotron, .container-fluid .app-lesson-jumbotron {
         padding-left: 60px;
         padding-right: 60px; }
       .jumbotron h1, .app-lesson-jumbotron h1,
@@ -6202,10 +6204,17 @@ button.close {
     top: -1em;
     left: -0.15em; }
   .app-addition .app-operation .app-operand {
-    letter-spacing: 1em; }
+    letter-spacing: 1em;
+    position: relative;
+    left: -3.75em; }
   .app-addition .app-operation .app-answer-separator {
     position: relative;
-    top: -1em; }
+    top: -1em;
+    left: -3.75em; }
+  .app-addition .app-operation .app-submit {
+    max-width: 70px;
+    position: relative;
+    top: -1.5em; }
   .app-addition .app-instruction {
     text-align: center; }
 
@@ -6214,6 +6223,9 @@ button.close {
   color: #676767;
   font-size: 15pt;
   font-weight: bolder; }
+
+.app-container {
+  max-width: 800px; }
 
 .app-lesson-jumbotron {
   height: 5em;
