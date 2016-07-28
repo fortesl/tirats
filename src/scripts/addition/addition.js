@@ -30,14 +30,15 @@
                 }
             }
             self.previousAnswer = goodAnswer;
-            $cookies.put(mathServices.userName+mathServices.userLesson+'Score', self.userScore);
-            $cookies.put(mathServices.userName+mathServices.userLesson+'Correct', self.currentCorrect);
-            $cookies.put(mathServices.userName+mathServices.userLesson+'Wrong', self.currentWrong);
+            $cookies.put(mathServices.user.name+mathServices.user.Operation+'Score', self.userScore);
+            $cookies.put(mathServices.user.name+mathServices.user.Operation+'Correct', self.currentCorrect);
+            $cookies.put(mathServices.user.name+mathServices.user.Operation+'Wrong', self.currentWrong);
             self.setElementFocus(self.answer.length-1);
         };
 
         var buildExpectedAnswer = function() {
             self.operands = mathServices.operands;
+            var i;
 
             // //test
             // self.operands = [{
@@ -51,7 +52,7 @@
 
             self.numberOfOperands = mathServices.operands.length;
             self.correctAnswer=0;
-            for (var i = 0; i< self.numberOfOperands; i++) {
+            for (i = 0; i< self.numberOfOperands; i++) {
                 self.correctAnswer += self.operands[i].value;
             }
 
@@ -59,7 +60,7 @@
             var numberOfExpectedDigits = correctAnswerDigits.length;
 
             self.answer = [];
-            for (var i = 0; i < numberOfExpectedDigits; i++) {
+            for (i = 0; i < numberOfExpectedDigits; i++) {
                 var answerDigit = {
                     position: i,
                     correctValue: correctAnswerDigits[i],
@@ -72,10 +73,10 @@
         self.init = function() {
             mathServices.getOperands('ADDITION');
 
-            self.userScore = $cookies.get(mathServices.userName+mathServices.userLesson+'Score') || 0;
-            self.currentCorrect = $cookies.get(mathServices.userName+mathServices.userLesson+'Correct') || 0;
-            self.currentWrong = $cookies.get(mathServices.userName+mathServices.userLesson+'Wrong') || 0;
-            self.userName = mathServices.userName;
+            self.userScore = $cookies.get(mathServices.user.name+mathServices.user.Operation+'Score') || 0;
+            self.currentCorrect = $cookies.get(mathServices.user.name+mathServices.user.Operation+'Correct') || 0;
+            self.currentWrong = $cookies.get(mathServices.user.name+mathServices.user.Operation+'Wrong') || 0;
+            self.userName = mathServices.user.name;
 
             buildExpectedAnswer();
         };
@@ -86,7 +87,7 @@
             },100);
         };
 
-        self.gotInput = function(position) {
+        self.setElementFocusAfterInput = function(position) {
             if (self.answer[position].inputValue) {
                 self.setElementFocus(position-1);
             }

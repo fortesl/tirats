@@ -20,6 +20,10 @@
                     controller: 'subtractionController as subtractionCtrl',
                     templateUrl: 'subtraction/subtraction.html'
                 })
+                .when('/multiplication', {
+                    controller: 'multiplicationController as multiplicationCtrl',
+                    templateUrl: 'multiplication/multiplication.html'
+                })
                 .otherwise({redirectTo: '/'});
         });
 

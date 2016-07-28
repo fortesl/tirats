@@ -1,14 +1,13 @@
 /**
- * Created by lfortes on 7/25/2016.
+ * Created by lfortes on 7/27/2016.
  */
 (function () {
     'use strict';
 
-    angular.module('tirats').controller('subtractionController', ['mathServices', 'toastr', '$cookies',
+    angular.module('tirats').controller('multiplicationController', ['mathServices', 'toastr', '$cookies',
         function(mathServices, toastr, $cookies) {
             var self = this;
             self.previousAnswer=true;
-
 
             self.checkAnswer = function () {
                 var goodAnswer = true;
@@ -25,7 +24,7 @@
                 }
                 else {
                     toastr.error('Not quite');
-                    if (self.previousAnswer===true) {
+                    if (self.previousAnswer === true) {
                         self.userScore--;
                         self.currentWrong++;
                     }
@@ -38,30 +37,32 @@
             };
 
             var buildExpectedAnswer = function() {
-                self.operands = mathServices.operands;
-                self.numberOfOperands = mathServices.operands.length;
-
-                var correctAnswer= self.operands[0].value;
                 var i;
-                for (i = 1; i< self.numberOfOperands; i++) {
-                    correctAnswer -= self.operands[i].value;
+                self.operands = mathServices.operands;
+
+                // //test
+                // self.operands = [{
+                //         value: 824
+                //     },
+                //     {
+                //         value: 990
+                //     }
+                // ];
+                //
+
+                self.numberOfOperands = mathServices.operands.length;
+                self.correctAnswer=1;
+                for (i = 0; i< self.numberOfOperands; i++) {
+                    self.correctAnswer *= self.operands[i].value;
                 }
-                var correctAnswerDigits = correctAnswer.toString().split('');
+
+                var correctAnswerDigits = self.correctAnswer.toString().split('');
                 var numberOfExpectedDigits = correctAnswerDigits.length;
 
                 self.answer = [];
-                var zeroDigits = self.operands[0].value.toString().length - numberOfExpectedDigits;
-
-                for (i = 0; i < zeroDigits; i++) {//Answer has fewer digits fill 0s to the left
-                    self.answer.push({
-                        position: i,
-                        correctValue: '0',
-                        inputValue: ''
-                    });
-                }
                 for (i = 0; i < numberOfExpectedDigits; i++) {
                     var answerDigit = {
-                        position: i+zeroDigits,
+                        position: i,
                         correctValue: correctAnswerDigits[i],
                         inputValue: ''
                     };
@@ -70,7 +71,7 @@
             };
 
             self.init = function() {
-                mathServices.getOperands('SUBTRACTION');
+                mathServices.getOperands('MULTIPLICATION');
 
                 self.userScore = $cookies.get(mathServices.user.name+mathServices.user.operation+'Score') || 0;
                 self.currentCorrect = $cookies.get(mathServices.user.name+mathServices.user.operation+'Correct') || 0;

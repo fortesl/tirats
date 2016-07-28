@@ -21,6 +21,11 @@ $app-font-size-xs: $app-font-size - 4;
   font-weight: bolder;
 }
 
+.app-container {
+  @extend .container;
+  max-width: 800px;
+}
+
 .app-lesson-jumbotron {
   @extend .jumbotron;
   height: 5em;

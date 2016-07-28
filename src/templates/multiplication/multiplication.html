@@ -1,0 +1,30 @@
+<div class="app-lesson-jumbotron">
+    <div class="app-jumbotron-content">
+        <div class="app-user-name"><a href="#/">{{multiplicationCtrl.userName}}</a></div>
+        <div class="app-lesson-title">Multiplication</div>
+        <div class="app-lesson-description">Numbers between 0 and 100</div>
+    </div>
+</div>
+<div class="row">
+    <div class="app-score">
+        Score: {{ multiplicationCtrl.userScore}}
+    </div>
+</div>
+<div class="row app-addition">
+    <div class="col-sm-6 app-operation">
+        <form class="app-form" name="calcForm" novalidate ng-submit="multiplicationCtrl.checkAnswer()">
+            <div class="app-operand" ng-repeat="number in multiplicationCtrl.operands">
+                <div ng-if="$index===multiplicationCtrl.numberOfOperands -1">X {{number.value}}</div>
+                <div ng-if="$index!==multiplicationCtrl.numberOfOperands -1">{{number.value}}</div>
+            </div>
+            <div class="app-answer-separator">______________</div>
+            <input class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required
+                   ng-repeat="digit in multiplicationCtrl.answer | orderBy:digit.position"
+                   ng-change="multiplicationCtrl.setElementFocusAfterInput(digit.position);"/>
+            <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary app-submit">
+        </form>
+    </div>
+    <div class="col-sm-6">
+    </div>
+</div>
+<div ng-init="multiplicationCtrl.setElementFocus(multiplicationCtrl.answer.length-1)"></div>
