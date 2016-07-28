@@ -7,59 +7,86 @@
     angular.module('tirats').factory('mathServices', [function() {
 
         var _operands = [];
-        var _numberOfOperands = 2;
-        var _userLevel = 2;
-        var _maxNumber1 = 200;
-        var _maxNumber2 = 99;
-        var _maxNumberOfOperands = 3;
-        var _user = {name: 'Tirat'};
+        var _maxNumber, _minNumber, _maxNumber2;
 
-        var _getOperands = function(operation){
-            var i, _operand;
-            if (operation) {
-                _user.operation = operation;
+        var _setupPage = function(page) {
+            page.userName = 'Tirat';
+            if (page.operation !== 'Multiplication') {
+                page.title = page.digit + '-Digit ' + page.operation;
+                page.description = 'Numbers between ' + page.min + ' and ' + page.max;
+                _maxNumber = Number(page.max);
+                _minNumber = Number(page.min);
             }
-            if (_userLevel === 2 && _user.operation === 'ADDITION') {
-                _numberOfOperands = Math.round(_maxNumberOfOperands * Math.random());
-                if (_numberOfOperands <2) { _numberOfOperands = 2;}
-                _operands.length = 0;
+            else {
+                page.title = page.operation + ' by ' + page.digit + ' digits';
+                page.description = 'Numbers to ' + page.max;
+                _maxNumber = Number(page.max);
+                if (page.digit === '1') {
+                    _maxNumber2 = 9;
+                    _minNumber = 0;
+                }
+                else if (page.digit === '2') {
+                    _maxNumber2 = 99;
+                    _minNumber = 10;
+                }
+                else if (page.digit === '3') {
+                    _maxNumber2 = 999;
+                    _minNumber = 100;
+                }
+                else {
+                    _maxNumber2 = 9999;
+                    _minNumber = 1000;
+                }
+            }
+        };
+
+        var _randomIntFromInterval = function(min,max)
+        {
+            return Math.floor(Math.random()*(max-min+1)+min);
+        };
+
+        var _getOperands = function(page){
+            var i, _operand, _numberOfOperands = 2;
+            _operands.length = 0;
+            _setupPage(page);
+
+            if (page.operation === 'Addition') {
+                page.operationSymbol = '+';
+                _numberOfOperands = _randomIntFromInterval(2,3);
                 for (i=0; i< _numberOfOperands; i++) {
-                    _operand = {value: Math.round(_maxNumber1 * Math.random())};
+                    _operand = {value: _randomIntFromInterval(_minNumber, _maxNumber)};
                     _operands.push(_operand);
                 }
             }
-            else if (_userLevel === 2 && _user.operation === 'SUBTRACTION') {
-                _maxNumber1 = 1000;
-                _operands.length = 0;
+            else if (page.operation === 'Subtraction') {
+                page.operationSymbol = '-';
                 for (i=0; i< _numberOfOperands; i++) {
                     if (!i) {
-                        _operand = {value: Math.round(_maxNumber1 * Math.random())};
+                        _operand = {value: _randomIntFromInterval(_minNumber, _maxNumber)};
                     }
                     else {
-                        _operand = {value: Math.round(_operands[0].value * Math.random())};
+                        _operand = {value: _randomIntFromInterval(_minNumber, _operands[0].value)};
                     }
                     _operands.push(_operand);
                 }
             }
-            else if (_user.operation === 'MULTIPLICATION') {
-                _maxNumber1 = 1000;
-                _maxNumber2 = 9;
-                _operands.length = 0;
+            else if (page.operation === 'Multiplication') {
+                page.operationSymbol = 'X';
                 for (i=0; i< _numberOfOperands; i++) {
                     if (!i) {
-                        _operand = {value: Math.round(_maxNumber1 * Math.random())};
+                        _operand = {value: _randomIntFromInterval(_maxNumber2, _maxNumber)};
                     }
                     else {
-                        _operand = {value: Math.round(_maxNumber2 * Math.random())};
+                        _operand = {value: _randomIntFromInterval(_minNumber, _maxNumber2)};
                     }
                     _operands.push(_operand);
                 }
             }
+            return _operands;
         } ;
 
         return {
             operands: _operands,
-            user: _user,
             getOperands: _getOperands
         };
     }]);

@@ -27,9 +27,7 @@
             'src/scripts/app.js',
             'dist/logic/tirats.templates.js',
             'src/scripts/mathServices.js',
-            'src/scripts/addition/**/*.js',
-            'src/scripts/subtraction/**/*.js',
-            'src/scripts/multiplication/**/*.js'
+            'src/scripts/operation/**/*.js'
         ]
     };
 

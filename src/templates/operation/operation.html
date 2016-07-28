@@ -1,0 +1,31 @@
+<div class="app-lesson-jumbotron">
+    <div class="app-jumbotron-content">
+        <div class="app-user-name"><a href="#/">{{operationCtrl.page.userName}}</a></div>
+        <div class="app-lesson-title">{{operationCtrl.page.title}}</div>
+        <div class="app-lesson-description">{{operationCtrl.page.description}}</div>
+    </div>
+</div>
+<div class="row">
+    <div class="app-score">
+        <span title="{{operationCtrl.page.title + ' - ' + operationCtrl.page.description}}">{{operationCtrl.page.level}}</span>
+        Score: {{ operationCtrl.userScore}}
+    </div>
+</div>
+<div class="row app-addition">
+    <div class="col-sm-6 app-operation">
+        <form class="app-form" name="calcForm" novalidate ng-submit="operationCtrl.checkAnswer()">
+            <div class="app-operand" ng-repeat="number in operationCtrl.operands">
+                <div ng-if="$index===operationCtrl.numberOfOperands -1">{{operationCtrl.page.operationSymbol}} {{number.value}}</div>
+                <div ng-if="$index!==operationCtrl.numberOfOperands -1">{{number.value}}</div>
+            </div>
+            <div class="app-answer-separator">________________</div>
+            <input class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required
+               ng-repeat="digit in operationCtrl.answer | orderBy:digit.position"
+               ng-change="operationCtrl.setElementFocusAfterInput(digit.position);"/>
+            <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary app-submit">
+        </form>
+    </div>
+    <div class="col-sm-6">
+    </div>
+</div>
+<div ng-init="operationCtrl.setElementFocus(operationCtrl.answer.length-1)"></div>
