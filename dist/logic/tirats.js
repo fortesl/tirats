@@ -24,14 +24,14 @@
             positionClass: 'toast-top-full-width',
             maxOpened: 1,
             target: '.app-form',
-            timeOut: 2500
+            timeOut: 1000
         });
     });
 
 })();
-angular.module('tirats').run(['$templateCache', function($templateCache) {$templateCache.put('landing/landing.html','<ul style="margin-top:3em">\r\n    <li><a href="#/Addition?digit=1&max=9&min=0">Addition - 1 digit</a></li>\r\n    <li><a href="#/Addition?digit=2&max=99&min=10">Addition - 2 digit</a></li>\r\n    <li><a href="#/Addition?digit=3&max=999&min=100">Addition - 3 digit</a></li>\r\n    <li><a href="#/Addition?digit=4&max=9999&min=1000">Addition - 4 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=1&max=9&min=0">Subtraction - 1 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=2&max=99&min=10">Subtraction - 2 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=3&max=999&min=100">Subtraction - 3 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=4&max=9999&min=1000">Subtraction - 4 digit</a></li>\r\n    <li><a href="#/Multiplication?max=9&digit=1">Multiplication - Number to 9 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=100&digit=1">Multiplication - Numbers to 99 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=1000&digit=1">Multiplication - Numbers to 999 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=10000&digit=1">Multiplication - Numbers to 9999 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=100&digit=2">Multiplication - Numbers to 99 by 2 digit</a></li>\r\n    <li><a href="#/Multiplication?max=1000&digit=2">Multiplication - Numbers to 999 by 2 digit</a></li>\r\n    <li><a href="#/Multiplication?max=10000&digit=2">Multiplication - Numbers to 9999 by 2 digit</a></li>\r\n</ul>');
+angular.module('tirats').run(['$templateCache', function($templateCache) {$templateCache.put('landing/landing.html','<ul style="margin-top:3em">\r\n    <li><a href="#/Addition?digit=1&max=9&min=0&level=A1">Addition - 1 digit</a></li>\r\n    <li><a href="#/Addition?digit=2&max=99&min=10&level=A2">Addition - 2 digit</a></li>\r\n    <li><a href="#/Addition?digit=3&max=999&min=100&level=A3">Addition - 3 digit</a></li>\r\n    <li><a href="#/Addition?digit=4&max=9999&min=1000&level=A4">Addition - 4 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=1&max=9&min=0&level=S1">Subtraction - 1 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=2&max=99&min=10&level=S2">Subtraction - 2 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=3&max=999&min=100&level=S3">Subtraction - 3 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=4&max=9999&min=1000"&level=S4>Subtraction - 4 digit</a></li>\r\n    <li><a href="#/Multiplication?max=9&digit=1&level=M1">Multiplication - Number to 9 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=100&digit=1&level=M2">Multiplication - Numbers to 99 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=1000&digit=1&level=M3">Multiplication - Numbers to 999 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=10000&digit=1&level=M4">Multiplication - Numbers to 9999 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=100&digit=2&level=M5">Multiplication - Numbers to 99 by 2 digit</a></li>\r\n    <li><a href="#/Multiplication?max=1000&digit=2&level=M6">Multiplication - Numbers to 999 by 2 digit</a></li>\r\n    <li><a href="#/Multiplication?max=10000&digit=2&level=M7">Multiplication - Numbers to 9999 by 2 digit</a></li>\r\n</ul>');
 $templateCache.put('multiplication/multiplication.html','<div class="app-lesson-jumbotron">\r\n    <div class="app-jumbotron-content">\r\n        <div class="app-user-name"><a href="#/">{{multiplicationCtrl.userName}}</a></div>\r\n        <div class="app-lesson-title">Multiplication</div>\r\n        <div class="app-lesson-description">Numbers between 0 and 100</div>\r\n    </div>\r\n</div>\r\n<div class="row">\r\n    <div class="app-score">\r\n        Score: {{ multiplicationCtrl.userScore}}\r\n    </div>\r\n</div>\r\n<div class="row app-addition">\r\n    <div class="col-sm-6 app-operation">\r\n        <form class="app-form" name="calcForm" novalidate ng-submit="multiplicationCtrl.checkAnswer()">\r\n            <div class="app-operand" ng-repeat="number in multiplicationCtrl.operands">\r\n                <div ng-if="$index===multiplicationCtrl.numberOfOperands -1">X {{number.value}}</div>\r\n                <div ng-if="$index!==multiplicationCtrl.numberOfOperands -1">{{number.value}}</div>\r\n            </div>\r\n            <div class="app-answer-separator">______________</div>\r\n            <input class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required\r\n                   ng-repeat="digit in multiplicationCtrl.answer | orderBy:digit.position"\r\n                   ng-change="multiplicationCtrl.setElementFocusAfterInput(digit.position);"/>\r\n            <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary app-submit">\r\n        </form>\r\n    </div>\r\n    <div class="col-sm-6">\r\n    </div>\r\n</div>\r\n<div ng-init="multiplicationCtrl.setElementFocus(multiplicationCtrl.answer.length-1)"></div>');
-$templateCache.put('operation/operation.html','<div class="app-lesson-jumbotron">\r\n    <div class="app-jumbotron-content">\r\n        <div class="app-user-name"><a href="#/">{{operationCtrl.page.userName}}</a></div>\r\n        <div class="app-lesson-title">{{operationCtrl.page.title}}</div>\r\n        <div class="app-lesson-description">{{operationCtrl.page.description}}</div>\r\n    </div>\r\n</div>\r\n<div class="row">\r\n    <div class="app-score">\r\n        Score: {{ operationCtrl.userScore}}\r\n    </div>\r\n</div>\r\n<div class="row app-addition">\r\n    <div class="col-sm-6 app-operation">\r\n        <form class="app-form" name="calcForm" novalidate ng-submit="operationCtrl.checkAnswer()">\r\n            <div class="app-operand" ng-repeat="number in operationCtrl.operands">\r\n                <div ng-if="$index===operationCtrl.numberOfOperands -1">{{operationCtrl.page.operationSymbol}} {{number.value}}</div>\r\n                <div ng-if="$index!==operationCtrl.numberOfOperands -1">{{number.value}}</div>\r\n            </div>\r\n            <div class="app-answer-separator">________________</div>\r\n            <input class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required\r\n               ng-repeat="digit in operationCtrl.answer | orderBy:digit.position"\r\n               ng-change="operationCtrl.setElementFocusAfterInput(digit.position);"/>\r\n            <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary app-submit">\r\n        </form>\r\n    </div>\r\n    <div class="col-sm-6">\r\n    </div>\r\n</div>\r\n<div ng-init="operationCtrl.setElementFocus(operationCtrl.answer.length-1)"></div>');
+$templateCache.put('operation/operation.html','<div class="app-lesson-jumbotron">\r\n    <div class="app-jumbotron-content">\r\n        <div class="app-user-name"><a href="#/">{{operationCtrl.page.userName}}</a></div>\r\n        <div class="app-lesson-title">{{operationCtrl.page.title}}</div>\r\n        <div class="app-lesson-description">{{operationCtrl.page.description}}</div>\r\n    </div>\r\n</div>\r\n<div class="row">\r\n    <div class="app-score">\r\n        <span title="{{operationCtrl.page.title + \' - \' + operationCtrl.page.description}}">{{operationCtrl.page.level}}</span>\r\n        Score: {{ operationCtrl.userScore}}\r\n    </div>\r\n</div>\r\n<div class="row app-addition">\r\n    <div class="col-sm-6 app-operation">\r\n        <form class="app-form" name="calcForm" novalidate ng-submit="operationCtrl.checkAnswer()">\r\n            <div class="app-operand" ng-repeat="number in operationCtrl.operands">\r\n                <div ng-if="$index===operationCtrl.numberOfOperands -1">{{operationCtrl.page.operationSymbol}} {{number.value}}</div>\r\n                <div ng-if="$index!==operationCtrl.numberOfOperands -1">{{number.value}}</div>\r\n            </div>\r\n            <div class="app-answer-separator">________________</div>\r\n            <input class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required\r\n               ng-repeat="digit in operationCtrl.answer | orderBy:digit.position"\r\n               ng-change="operationCtrl.setElementFocusAfterInput(digit.position);"/>\r\n            <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary app-submit">\r\n        </form>\r\n    </div>\r\n    <div class="col-sm-6">\r\n    </div>\r\n</div>\r\n<div ng-init="operationCtrl.setElementFocus(operationCtrl.answer.length-1)"></div>');
 $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbotron">\r\n    <div class="app-jumbotron-content">\r\n        <div class="app-user-name"><a href="#/">{{subtractionCtrl.userName}}</a></div>\r\n        <div class="app-lesson-title">Subtraction</div>\r\n        <div class="app-lesson-description">Numbers between 0 and 1000</div>\r\n    </div>\r\n</div>\r\n<div class="row">\r\n    <div class="app-score">\r\n        Score: {{ subtractionCtrl.userScore}}\r\n    </div>\r\n</div>\r\n<div class="row app-addition">\r\n    <div class="col-sm-6 app-operation">\r\n        <form class="app-form" name="calcForm" novalidate ng-submit="subtractionCtrl.checkAnswer()">\r\n            <div ng-repeat="number in subtractionCtrl.operands">\r\n                <div class="app-operand" ng-if="$index===subtractionCtrl.numberOfOperands -1">- {{number.value}}</div>\r\n                <div class="app-operand" ng-if="$index!==subtractionCtrl.numberOfOperands -1">{{number.value}}</div>\r\n            </div>\r\n            <div class="app-answer-separator">______________</div>\r\n            <input class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required\r\n               ng-repeat="digit in subtractionCtrl.answer | orderBy:digit.position"\r\n               ng-change="subtractionCtrl.setElementFocusAfterInput(digit.position);"/>\r\n            <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary app-submit">\r\n        </form>\r\n    </div>\r\n    <div class="col-sm-6">\r\n    </div>\r\n</div>\r\n<div ng-init="subtractionCtrl.setElementFocus(subtractionCtrl.answer.length-1)"></div>');}]);
 /**
  * Created by lfortes on 7/23/2016.
@@ -136,19 +136,19 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
     angular.module('tirats').controller('operationController',
         ['mathServices', 'toastr', '$cookies', '$location', '$routeParams',
             function(mathServices, toastr, $cookies, $location, $routeParams) {
-                var self = this;
+                var self = this, _pageId;
                 self.previousGoodAnswer=true;
 
                 var _setCookies = function() {
-                    $cookies.put(self.page.userName+self.page.operation+'Score', self.userScore);
-                    $cookies.put(self.page.userName+self.page.operation+'Correct', self.currentCorrect);
-                    $cookies.put(self.page.userName+self.page.operation+'Wrong', self.currentWrong);
+                    $cookies.put(_pageId+'Score', self.userScore);
+                    $cookies.put(_pageId+'Correct', self.currentCorrect);
+                    $cookies.put(_pageId+'Wrong', self.currentWrong);
                 };
 
                 var _getCookies = function() {
-                    self.userScore = $cookies.get(self.page.userName+self.page.operation+'Score') || 0;
-                    self.currentCorrect = $cookies.get(self.page.userName+self.page.operation+'Correct') || 0;
-                    self.currentWrong = $cookies.get(self.page.userName+self.page.operation+'Wrong') || 0;
+                    self.userScore = $cookies.get(_pageId+'Score') || 0;
+                    self.currentCorrect = $cookies.get(_pageId+'Correct') || 0;
+                    self.currentWrong = $cookies.get(_pageId+'Wrong') || 0;
                 };
 
                 self.checkAnswer = function () {
@@ -166,7 +166,7 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
                     }
                     else {
                         toastr.error('Not quite');
-                        if (self.previousGoodAnswer === true) {
+                        if (self.previousGoodAnswer === true && self.userScore) {
                             self.userScore--;
                             self.currentWrong++;
                         }
@@ -193,8 +193,6 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
                 var _buildExpectedAnswer = function() {
                     self.operands = mathServices.operands;
 
-//                    self.operands = [{value: 5}, {value: 5}]; //TEST
-
                     self.numberOfOperands = self.operands.length;
                     var _correctAnswerDigits = _getAnswer(self.operands).split('');
                     var _numberOfExpectedDigits = _correctAnswerDigits.length;
@@ -202,7 +200,8 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
 
                     self.answer = [];
                     //FILL in zero digits, if any
-                    if (self.page.operation === 'Subtraction') _zeroDigits = self.operands[0].value.toString().length - _numberOfExpectedDigits;
+                    if (self.page.operation === 'Subtraction')
+                        _zeroDigits = self.operands[0].value.toString().length - _numberOfExpectedDigits;
                     for (_i = 0; _i < _zeroDigits; _i++) {//Answer has fewer digits fill 0s to the left
                         self.answer.push({
                             position: _i,
@@ -226,6 +225,8 @@ $templateCache.put('subtraction/subtraction.html','<div class="app-lesson-jumbot
                     self.page.operation = $routeParams.operationId;
 
                     mathServices.getOperands(self.page);
+                    _pageId = self.page.userName+self.page.operation+self.page.level;
+
                     _buildExpectedAnswer();
                     _getCookies();
                 };
