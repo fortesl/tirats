@@ -27,6 +27,11 @@
         gulp.watch('./src/styles/**/*.scss', ['buildAppStyle']);
     });
 
+    gulp.task('deploy', function() {
+        return gulp.src(['./index.html'])
+            .pipe(plugins.copy('../tirats-gh-pages'));
+    });
+
     gulp.task('deployAppJs', function() {
         return gulp.src(resourceFolders.distJs + 'tirats.js')
             .pipe(plugins.copy(resourceFolders.deploy + 'logic/', { prefix: 4 }));
