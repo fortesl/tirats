@@ -232,6 +232,7 @@ $templateCache.put('operation/operation.html','<div class="app-lesson-jumbotron"
                 self.setElementFocus = function(position) {
                     window.setTimeout(function() {
                         angular.element('.app-input.' + position).focus();
+                        angular.element('.app-input.' + position).select();
                     },100);
                 };
 
