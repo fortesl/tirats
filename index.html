@@ -7,12 +7,16 @@
     <link type="text/css" rel="stylesheet" href="dist/css/tirats.css">
 </head>
 <body class="app-body">
-
-    <div class="container">
+    <div class="app-container">
         <ng-view></ng-view>
     </div>
 
     <script src="./dist/logic/thirdParty.js"></script>
     <script src="./dist/logic/tirats.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(document).on('click','input[type=text]',function(){ this.setSelectionRange(0, this.value.length); });
+        });
+    </script>
 </body>
 </html>
