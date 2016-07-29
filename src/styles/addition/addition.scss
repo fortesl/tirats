@@ -10,6 +10,9 @@
       position: relative;
       top: -1em;
       left: -0.15em;
+      &.ng-invalid-pattern {
+        border: 1px solid red;
+      }
     }
     .app-operand {
       letter-spacing: 1em;
