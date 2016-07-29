@@ -31,9 +31,9 @@
                     });
                     if (goodAnswer) {
                         toastr.success('You got it', self.answer);
-                        self.init();
                         self.userScore++;
                         self.currentCorrect++;
+                        _askQuestion();
                     }
                     else {
                         toastr.error('Not quite');
@@ -91,17 +91,6 @@
                     }
                 };
 
-                self.init = function() {
-                    self.page = $location.search();
-                    self.page.operation = $routeParams.operationId;
-
-                    mathServices.getOperands(self.page);
-                    _pageId = self.page.userName+self.page.operation+self.page.level;
-
-                    _buildExpectedAnswer();
-                    _getCookies();
-                };
-
                 self.setElementFocus = function(position) {
                     window.setTimeout(function() {
                         angular.element('.app-input.' + position).focus();
@@ -115,7 +104,19 @@
                     }
                 };
 
-                self.init();
+                var _askQuestion = function() {
+                    mathServices.getOperands(self.page);
+                    _buildExpectedAnswer();
+                };
+
+                (function() {
+                    self.page = $location.search();
+                    self.page.operation = $routeParams.operationId;
+                    _pageId = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
+                    _getCookies();
+                    _askQuestion();
+                })();
+
             }]);
 
 })();

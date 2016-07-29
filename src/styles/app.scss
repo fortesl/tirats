@@ -29,14 +29,14 @@ $app-font-size-xs: $app-font-size - 4;
 .app-lesson-jumbotron {
   @extend .jumbotron;
   margin-top: 0.1em;
-  height: 5em;
+  height: 1em;
   background-color: darken($app-background-color, 10%);
   .app-jumbotron-content {
     position: relative;
-    top: -1.8em;
+    top: -1.3em;
     .app-user-name {
       text-align: right;
-      font-size: $app-font-size-l;
+      font-size: $app-font-size;
     }
     .app-lesson-title {
       text-align: center;

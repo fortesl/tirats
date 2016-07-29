@@ -10,7 +10,6 @@
         var _maxNumber, _minNumber, _maxNumber2;
 
         var _setupPage = function(page) {
-            page.userName = 'Tirat';
             if (page.operation !== 'Multiplication') {
                 page.title = page.digit + '-Digit ' + page.operation;
                 page.description = 'Numbers between ' + page.min + ' and ' + page.max;
@@ -85,9 +84,15 @@
             return _operands;
         } ;
 
+        var _getUserName = function(page) {
+            page.userName = 'Tirat';
+            return page.userName;
+        };
+
         return {
             operands: _operands,
-            getOperands: _getOperands
+            getOperands: _getOperands,
+            getUserName: _getUserName
         };
     }]);
 
