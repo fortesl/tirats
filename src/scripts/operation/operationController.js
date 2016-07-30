@@ -7,19 +7,18 @@
     angular.module('tirats').controller('operationController',
         ['mathServices', 'toastr', '$cookies', '$location', '$routeParams',
             function(mathServices, toastr, $cookies, $location, $routeParams) {
-                var self = this, _pageId;
-                self.previousGoodAnswer=true;
+                var self = this, _previousGoodAnswer=true, _timerStopper;
 
                 var _setCookies = function() {
-                    $cookies.put(_pageId+'Score', self.userScore);
-                    $cookies.put(_pageId+'Correct', self.currentCorrect);
-                    $cookies.put(_pageId+'Wrong', self.currentWrong);
+                    $cookies.put(self.page.id+'Score', self.userScore);
+                    $cookies.put(self.page.id+'Correct', self.currentCorrect);
+                    $cookies.put(self.page.id+'Wrong', self.currentWrong);
                 };
 
                 var _getCookies = function() {
-                    self.userScore = $cookies.get(_pageId+'Score') || 0;
-                    self.currentCorrect = $cookies.get(_pageId+'Correct') || 0;
-                    self.currentWrong = $cookies.get(_pageId+'Wrong') || 0;
+                    self.userScore = $cookies.get(self.page.id+'Score') || 0;
+                    self.currentCorrect = $cookies.get(self.page.id+'Correct') || 0;
+                    self.currentWrong = $cookies.get(self.page.id+'Wrong') || 0;
                 };
 
                 self.checkAnswer = function () {
@@ -37,12 +36,15 @@
                     }
                     else {
                         toastr.error('Not quite');
-                        if (self.previousGoodAnswer === true && self.userScore) {
+                        if (_previousGoodAnswer === true && self.userScore) {
                             self.userScore--;
                             self.currentWrong++;
                         }
                     }
-                    self.previousGoodAnswer = goodAnswer;
+                    if (self.userScore === 1 && !self.page.timer.isOn) {
+                        _startTimer();
+                    }
+                    _previousGoodAnswer = goodAnswer;
                     self.setElementFocus(self.answer.length-1);
                     _setCookies();
                 };
@@ -109,10 +111,32 @@
                     _buildExpectedAnswer();
                 };
 
+                var _resetTimer = function() {
+                    self.page.timer = {isOn: false, value: 0, hours: '00', minutes: '00', seconds: '00'};
+                };
+
+                var _startTime = function() {
+                    self.page.timer.isOn = true;
+                    _timerStopper = window.setInterval(function() {
+                        self.page.timer.value++;
+                        self.page.timer.hours = self.page.timer.value / 3600;
+                        self.page.timer.minutes = _addZeroToTheLeft(self.page.timer.value / 60);
+                        self.page.timer.seconds = _addZeroToTheLeft(self.page.timer.value);
+                    }, 1000);
+                };
+                
+                var _addZeroToTheLeft = function(value) {
+                    if (value < 10) {
+                        value = "0" + value;
+                    }
+                    return value;
+                };
+                
                 (function() {
                     self.page = $location.search();
                     self.page.operation = $routeParams.operationId;
-                    _pageId = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
+                    self.page.id = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
+                    _resetTimer();
                     _getCookies();
                     _askQuestion();
                 })();

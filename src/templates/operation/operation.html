@@ -8,6 +8,11 @@
     <div class="app-score">
         <span title="{{operationCtrl.page.title + ' - ' + operationCtrl.page.description}}">{{operationCtrl.page.level}}</span>
         Score: {{ operationCtrl.userScore}}
+        <div ng-show="operationCtrl.page.timer.isOn">
+            <span>{{operationCtrl.page.timer.hours}}: </span>
+            <span>{{operationCtrl.page.timer.minutes}}: </span>
+            <span>{{operationCtrl.page.timer.seconds}}</span>
+        </div>
     </div>
 </div>
 <div class="row app-addition">
