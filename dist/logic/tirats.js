@@ -29,8 +29,8 @@
     });
 
 })();
-angular.module('tirats').run(['$templateCache', function($templateCache) {$templateCache.put('operation/operation.html','<div class="app-lesson-jumbotron">\r\n    <div class="app-jumbotron-content">\r\n        <div class="app-user-name"><a href="#/">{{operationCtrl.page.userName}}</a></div>\r\n        <div class="app-lesson-title">{{operationCtrl.page.title}}</div>\r\n    </div>\r\n</div>\r\n<div class="row">\r\n    <div class="app-score">\r\n        <span title="{{operationCtrl.page.title + \' - \' + operationCtrl.page.description}}">{{operationCtrl.page.level}}</span>\r\n        Score: {{ operationCtrl.userScore}}\r\n    </div>\r\n</div>\r\n<div class="row app-addition">\r\n    <div class="col-sm-6 app-operation">\r\n        <form class="app-form" name="calcForm" novalidate ng-submit="operationCtrl.checkAnswer()">\r\n            <div class="app-operand" ng-repeat="number in operationCtrl.operands">\r\n                <div ng-if="$index===operationCtrl.numberOfOperands -1">{{operationCtrl.page.operationSymbol}} {{number.value}}</div>\r\n                <div ng-if="$index!==operationCtrl.numberOfOperands -1">{{number.value}}</div>\r\n            </div>\r\n            <div class="app-answer-separator">________________</div>\r\n            <input type="text" class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required\r\n               ng-repeat="digit in operationCtrl.answer | orderBy:digit.position"\r\n               ng-change="operationCtrl.setElementFocusAfterInput(digit.position)"\r\n                ng-pattern="/[0-9]/"/>\r\n            <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary app-submit">\r\n        </form>\r\n    </div>\r\n    <div class="col-sm-6">\r\n    </div>\r\n</div>\r\n<div ng-init="operationCtrl.setElementFocus(operationCtrl.answer.length-1)"></div>\r\n');
-$templateCache.put('landing/landing.html','<ul style="margin-top:3em">\r\n    <li><a href="#/Addition?digit=1&max=9&min=0&level=A1">Addition - 1 digit</a></li>\r\n    <li><a href="#/Addition?digit=2&max=99&min=10&level=A2">Addition - 2 digit</a></li>\r\n    <li><a href="#/Addition?digit=3&max=999&min=100&level=A3">Addition - 3 digit</a></li>\r\n    <li><a href="#/Addition?digit=4&max=9999&min=1000&level=A4">Addition - 4 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=1&max=9&min=0&level=S1">Subtraction - 1 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=2&max=99&min=10&level=S2">Subtraction - 2 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=3&max=999&min=100&level=S3">Subtraction - 3 digit</a></li>\r\n    <li><a href="#/Subtraction?digit=4&max=9999&min=1000&level=S4">Subtraction - 4 digit</a></li>\r\n    <li><a href="#/Multiplication?max=9&digit=1&level=M1">Multiplication - Number to 9 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=100&digit=1&level=M2">Multiplication - Numbers to 99 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=1000&digit=1&level=M3">Multiplication - Numbers to 999 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=10000&digit=1&level=M4">Multiplication - Numbers to 9999 by 1 digit</a></li>\r\n    <li><a href="#/Multiplication?max=100&digit=2&level=M5">Multiplication - Numbers to 99 by 2 digit</a></li>\r\n    <li><a href="#/Multiplication?max=1000&digit=2&level=M6">Multiplication - Numbers to 999 by 2 digit</a></li>\r\n    <li><a href="#/Multiplication?max=10000&digit=2&level=M7">Multiplication - Numbers to 9999 by 2 digit</a></li>\r\n</ul>');}]);
+angular.module('tirats').run(['$templateCache', function($templateCache) {$templateCache.put('landing/landing.html','<ul style="margin-top:3em">\n    <li><a href="#/Addition?digit=1&max=9&min=0&level=A1">Addition - 1 digit</a></li>\n    <li><a href="#/Addition?digit=2&max=99&min=10&level=A2">Addition - 2 digit</a></li>\n    <li><a href="#/Addition?digit=3&max=999&min=100&level=A3">Addition - 3 digit</a></li>\n    <li><a href="#/Addition?digit=4&max=9999&min=1000&level=A4">Addition - 4 digit</a></li>\n    <li><a href="#/Subtraction?digit=1&max=9&min=0&level=S1">Subtraction - 1 digit</a></li>\n    <li><a href="#/Subtraction?digit=2&max=99&min=10&level=S2">Subtraction - 2 digit</a></li>\n    <li><a href="#/Subtraction?digit=3&max=999&min=100&level=S3">Subtraction - 3 digit</a></li>\n    <li><a href="#/Subtraction?digit=4&max=9999&min=1000&level=S4">Subtraction - 4 digit</a></li>\n    <li><a href="#/Multiplication?max=9&digit=1&level=M1">Multiplication - Number to 9 by 1 digit</a></li>\n    <li><a href="#/Multiplication?max=100&digit=1&level=M2">Multiplication - Numbers to 99 by 1 digit</a></li>\n    <li><a href="#/Multiplication?max=1000&digit=1&level=M3">Multiplication - Numbers to 999 by 1 digit</a></li>\n    <li><a href="#/Multiplication?max=10000&digit=1&level=M4">Multiplication - Numbers to 9999 by 1 digit</a></li>\n    <li><a href="#/Multiplication?max=100&digit=2&level=M5">Multiplication - Numbers to 99 by 2 digit</a></li>\n    <li><a href="#/Multiplication?max=1000&digit=2&level=M6">Multiplication - Numbers to 999 by 2 digit</a></li>\n    <li><a href="#/Multiplication?max=10000&digit=2&level=M7">Multiplication - Numbers to 9999 by 2 digit</a></li>\n</ul>');
+$templateCache.put('operation/operation.html','<div class="app-lesson-jumbotron">\n    <div class="app-jumbotron-content">\n        <div class="app-user-name"><a href="#/">{{operationCtrl.page.userName}}</a></div>\n        <div class="app-lesson-title">{{operationCtrl.page.title}}</div>\n    </div>\n</div>\n<div class="row">\n    <div class="app-score">\n        <span title="{{operationCtrl.page.title + \' - \' + operationCtrl.page.description}}">{{operationCtrl.page.level}}</span>\n        Score: {{ operationCtrl.userScore}}\n        <div>\n            <span>{{operationCtrl.page.timer.hours}}:</span><span>{{operationCtrl.page.timer.minutes}}:</span><span>{{operationCtrl.page.timer.seconds}}</span>\n        </div>\n    </div>\n</div>\n<div class="row app-addition">\n    <div class="col-sm-6 app-operation">\n        <form class="app-form" name="calcForm" novalidate ng-submit="operationCtrl.checkAnswer()">\n            <div class="app-operand" ng-repeat="number in operationCtrl.operands">\n                <div ng-if="$index===operationCtrl.numberOfOperands -1">{{operationCtrl.page.operationSymbol}} {{number.value}}</div>\n                <div ng-if="$index!==operationCtrl.numberOfOperands -1">{{number.value}}</div>\n            </div>\n            <div class="app-answer-separator">________________</div>\n            <input type="text" class="app-input {{digit.position}}" size="1" maxlength="1" ng-model="digit.inputValue" required\n               ng-repeat="digit in operationCtrl.answer | orderBy:digit.position"\n               ng-change="operationCtrl.setElementFocusAfterInput(digit.position)"\n               ng-keyup="operationCtrl.notIdle()" ng-pattern="/[0-9]/"/>\n            <input ng-disabled="calcForm.$invalid" type="submit" class="btn btn-primary app-submit">\n        </form>\n    </div>\n    <div class="col-sm-6">\n    </div>\n</div>\n<div ng-init="operationCtrl.setElementFocus(operationCtrl.answer.length-1)"></div>\n');}]);
 /**
  * Created by lfortes on 7/23/2016.
  */
@@ -137,21 +137,21 @@ $templateCache.put('landing/landing.html','<ul style="margin-top:3em">\r\n    <l
     'use strict';
 
     angular.module('tirats').controller('operationController',
-        ['mathServices', 'toastr', '$cookies', '$location', '$routeParams',
-            function(mathServices, toastr, $cookies, $location, $routeParams) {
-                var self = this, _pageId;
-                self.previousGoodAnswer=true;
+        ['mathServices', 'toastr', '$cookies', '$location', '$routeParams', '$scope',
+            function(mathServices, toastr, $cookies, $location, $routeParams, $scope) {
+                var self = this, _previousGoodAnswer=true;
 
                 var _setCookies = function() {
-                    $cookies.put(_pageId+'Score', self.userScore);
-                    $cookies.put(_pageId+'Correct', self.currentCorrect);
-                    $cookies.put(_pageId+'Wrong', self.currentWrong);
+                    $cookies.put(self.page.id+'Score', self.userScore);
+                    $cookies.put(self.page.id+'Correct', self.currentCorrect);
+                    $cookies.put(self.page.id+'Wrong', self.currentWrong);
+                    $cookies.put(self.page.id+'Time', self.page.timer.value);
                 };
 
                 var _getCookies = function() {
-                    self.userScore = $cookies.get(_pageId+'Score') || 0;
-                    self.currentCorrect = $cookies.get(_pageId+'Correct') || 0;
-                    self.currentWrong = $cookies.get(_pageId+'Wrong') || 0;
+                    self.userScore = $cookies.get(self.page.id+'Score') || 0;
+                    self.currentCorrect = $cookies.get(self.page.id+'Correct') || 0;
+                    self.currentWrong = $cookies.get(self.page.id+'Wrong') || 0;
                 };
 
                 self.checkAnswer = function () {
@@ -169,18 +169,18 @@ $templateCache.put('landing/landing.html','<ul style="margin-top:3em">\r\n    <l
                     }
                     else {
                         toastr.error('Not quite');
-                        if (self.previousGoodAnswer === true && self.userScore) {
+                        if (_previousGoodAnswer === true && self.userScore) {
                             self.userScore--;
                             self.currentWrong++;
                         }
                     }
-                    self.previousGoodAnswer = goodAnswer;
+                    _previousGoodAnswer = goodAnswer;
                     self.setElementFocus(self.answer.length-1);
                     _setCookies();
                 };
 
                 var _getAnswer = function(operands) {
-                    var _correctAnswer= self.operands[0].value;
+                    var _correctAnswer= operands[0].value;
 
                     for (var i = 1; i< self.numberOfOperands; i++) {
                         if (self.page.operation === 'Addition')
@@ -241,10 +241,56 @@ $templateCache.put('landing/landing.html','<ul style="margin-top:3em">\r\n    <l
                     _buildExpectedAnswer();
                 };
 
+                var _resetTimer = function() {
+                    self.page.timer = {isOn: false, idleMark: 90};
+                    self.page.timer.value = $cookies.get(self.page.id+'Time') || 0;
+                    _displayTimer();
+                };
+
+                var _startTimer = function() {
+                    self.page.timer.isOn = true;
+                    self.page.timer.idle = 0;
+                    var _timerStopper = window.setInterval(function() {
+                        self.page.timer.value++;
+                        self.page.timer.idle++;
+                        if (self.page.timer.idle >=self.page.timer.idleMark) {
+                            window.clearInterval(_timerStopper);
+                            self.page.timer.value -= self.page.timer.idleMark;
+                            self.page.timer.isOn = false;
+                            self.page.timer.idle = 0;
+                        }
+                        _displayTimer();
+                    }, 1000);
+                };
+
+                var _displayTimer = function() {
+                    self.page.timer.hours = _addZeroToTheLeft(Math.floor(self.page.timer.value / 3600));
+                    self.page.timer.minutes = _addZeroToTheLeft(Math.floor(self.page.timer.value / 60));
+                    self.page.timer.seconds = _addZeroToTheLeft(Math.floor(self.page.timer.value % 60));
+                    if (!$scope.$$phase) {
+                        $scope.$digest();
+                    }
+                };
+                
+                var _addZeroToTheLeft = function(value) {
+                    if (value < 10) {
+                        value = "0" + value;
+                    }
+                    return value;
+                };
+
+                self.notIdle = function() {
+                    self.page.timer.idle = 0;
+                    if (!self.page.timer.isOn) {
+                        _startTimer();
+                    }
+                };
+
                 (function() {
                     self.page = $location.search();
                     self.page.operation = $routeParams.operationId;
-                    _pageId = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
+                    self.page.id = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
+                    _resetTimer();
                     _getCookies();
                     _askQuestion();
                 })();
