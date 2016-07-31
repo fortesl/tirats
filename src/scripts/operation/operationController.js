@@ -5,8 +5,8 @@
     'use strict';
 
     angular.module('tirats').controller('operationController',
-        ['mathServices', 'toastr', '$cookies', '$location', '$routeParams', '$scope',
-            function(mathServices, toastr, $cookies, $location, $routeParams, $scope) {
+        ['mathServices', 'toastr', '$cookies', '$location', '$routeParams', '$interval', '$scope',
+            function(mathServices, toastr, $cookies, $location, $routeParams, $interval, $scope) {
                 var self = this, _previousGoodAnswer=true;
 
                 var _setCookies = function() {
@@ -20,6 +20,10 @@
                     self.userScore = $cookies.get(self.page.id+'Score') || 0;
                     self.currentCorrect = $cookies.get(self.page.id+'Correct') || 0;
                     self.currentWrong = $cookies.get(self.page.id+'Wrong') || 0;
+                };
+
+                window.onbeforeunload = function() {
+                    $cookies.put(self.page.id+'Time', self.page.timer.value);
                 };
 
                 self.checkAnswer = function () {
@@ -109,35 +113,46 @@
                     _buildExpectedAnswer();
                 };
 
-                var _resetTimer = function() {
-                    self.page.timer = {isOn: false, idleMark: 90};
+                //=========================== timer service ================================
+                var _setupTimer = function() {
+                    self.page.timer = {isOn: false, idleMark: 90, stopper: undefined};
                     self.page.timer.value = $cookies.get(self.page.id+'Time') || 0;
-                    _displayTimer();
+                    _setTimerDisplay();
                 };
 
-                var _startTimer = function() {
-                    self.page.timer.isOn = true;
+                self.startTimer = function() {
+                    if (!self.page.timer.isOn) {
+                        self.page.timer.isOn = true;
+                        self.page.timer.idle = 0;
+                        self.page.timer.stopper = $interval(function () {
+                            self.page.timer.value++;
+                            self.page.timer.idle++;
+                            if (self.page.timer.idle >= self.page.timer.idleMark) {
+                                _stopTimer(self.page.timer.stopper);
+                                self.page.timer.value -= self.page.timer.idleMark;
+                                self.page.timer.idle = 0;
+                            }
+                            _setTimerDisplay();
+                        }, 1000);
+                    }
+                };
+
+                self.markTimerAsNotIdle = function() {
                     self.page.timer.idle = 0;
-                    var _timerStopper = window.setInterval(function() {
-                        self.page.timer.value++;
-                        self.page.timer.idle++;
-                        if (self.page.timer.idle >=self.page.timer.idleMark) {
-                            window.clearInterval(_timerStopper);
-                            self.page.timer.value -= self.page.timer.idleMark;
-                            self.page.timer.isOn = false;
-                            self.page.timer.idle = 0;
-                        }
-                        _displayTimer();
-                    }, 1000);
                 };
 
-                var _displayTimer = function() {
+                var _stopTimer = function(stopper) {
+                    self.page.timer.isOn = false;
+                    if (angular.isDefined(stopper)) {
+                        $interval.cancel(stopper);
+                        stopper = undefined;
+                    }
+                };
+
+                var _setTimerDisplay = function() {
                     self.page.timer.hours = _addZeroToTheLeft(Math.floor(self.page.timer.value / 3600));
                     self.page.timer.minutes = _addZeroToTheLeft(Math.floor(self.page.timer.value / 60));
                     self.page.timer.seconds = _addZeroToTheLeft(Math.floor(self.page.timer.value % 60));
-                    if (!$scope.$$phase) {
-                        $scope.$digest();
-                    }
                 };
                 
                 var _addZeroToTheLeft = function(value) {
@@ -146,21 +161,23 @@
                     }
                     return value;
                 };
-
-                self.notIdle = function() {
-                    self.page.timer.idle = 0;
-                    if (!self.page.timer.isOn) {
-                        _startTimer();
-                    }
-                };
+//                ================================= timer service ==================================== */
 
                 (function() {
                     self.page = $location.search();
                     self.page.operation = $routeParams.operationId;
                     self.page.id = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
-                    _resetTimer();
+                    self.page.scoreLabel='Score';
+
+                    _setupTimer();
                     _getCookies();
                     _askQuestion();
+                    self.startTimer();
+
+                    $scope.$on('$destroy', function() {
+                        // Make sure that the interval is destroyed too
+                        _stopTimer(self.page.timer.stopper);
+                    });
                 })();
 
             }]);

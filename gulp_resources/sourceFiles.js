@@ -17,9 +17,6 @@
                 'bower_components/angular/angular.js',
                 'bower_components/angular-route/angular-route.js',
                 'bower_components/angular-cookies/angular-cookies.js',
-                'bower_components/moment/moment.js',
-                'bower_components/angular-multi-select/isteven-multi-select.js',
-                'bower_components/json-formatter/dist/json-formatter.js',
                 'bower_components/angular-toastr/dist/angular-toastr.tpls.js'
             ]
         },

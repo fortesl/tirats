@@ -13,7 +13,9 @@
         del: require('del'),
         connect: require('gulp-connect'),
         copy: require('gulp-copy'),
-        replace: require('gulp-replace')
+        replace: require('gulp-replace'),
+        minify: require('gulp-minify'),
+        cleanCSS: require('gulp-clean-css')
     };
 
     module.exports = plugins;

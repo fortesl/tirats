@@ -27,23 +27,50 @@
         gulp.watch('./src/styles/**/*.scss', ['buildAppStyle']);
     });
 
-    gulp.task('deploy', function() {
+    gulp.task('deploy', ['deployAppIndex', 'deployAppJs', 'deployAppThirdParty', 'deployAppIndex']);
+
+    gulp.task('deployAppIndex', function() {
         return gulp.src(['./index.html'])
             .pipe(plugins.copy('../tirats-gh-pages'));
     });
 
     gulp.task('deployAppJs', function() {
-        return gulp.src(resourceFolders.distJs + 'tirats.js')
-            .pipe(plugins.copy(resourceFolders.deploy + 'logic/', { prefix: 4 }));
+        gulp.src(resourceFolders.distJs + 'tirats.js')
+            .pipe(plugins.minify({
+                noSource: true,
+                mangle: false,
+                ext:{
+                    src:'-debug.js',
+                    min:'.js'
+                }
+            }))
+            .pipe(gulp.dest(resourceFolders.deploy + 'logic/'));
+    });
+
+    gulp.task('deployAppThirdPartyJs', function() {
+        gulp.src(resourceFolders.distJs + 'thirdParty.js')
+            .pipe(plugins.minify({
+                noSource: true,
+                mangle: false,
+                ext:{
+                    src:'-debug.js',
+                    min:'.js'
+                }
+            }))
+            .pipe(gulp.dest(resourceFolders.deploy + 'logic/'));
     });
 
     gulp.task('deployAppStyle', function() {
         return gulp.src(resourceFolders.distStyles + 'tirats.css')
-            .pipe(plugins.copy(resourceFolders.deploy + 'css/', { prefix: 4 }));
+            .pipe(plugins.cleanCSS())
+            .pipe(gulp.dest(resourceFolders.deploy + 'css/'));
     });
+
 
     gulp.task('buildAppJs', ['buildAppTemplates'], function () {
         return gulp.src(sources.app)
+            .pipe(plugins.jshint({lookup: false}))
+            .pipe(plugins.jshint.reporter('default'))
             .pipe(plugins.concat('tirats.js'))
             .pipe(gulp.dest(resourceFolders.distJs));
     });

@@ -24,10 +24,12 @@
     "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
+    "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^4.1.0",
     "gulp-copy": "0.0.2",
     "gulp-jshint": "^2.0.1",
+    "gulp-minify": "0.0.13",
     "gulp-replace": "^0.5.4",
     "gulp-ruby-sass": "^2.0.6",
     "jshint": "^2.9.2"
