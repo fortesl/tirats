@@ -55,18 +55,17 @@
                     var _correctAnswer= operands[0].value;
 
                     for (var i = 1; i< self.numberOfOperands; i++) {
-                        if (self.page.operation === 'Addition')
+                        if (self.page.operationSymbol === '+')
                             _correctAnswer += self.operands[i].value;
-                        else if (self.page.operation === 'Subtraction')
+                        else if (self.page.operationSymbol === '-')
                             _correctAnswer -= self.operands[i].value;
-                        else if (self.page.operation === 'Multiplication')
+                        else if (self.page.operation === 'X')
                             _correctAnswer *= self.operands[i].value;
                     }
                     return _correctAnswer.toString();
                 };
 
                 var _buildExpectedAnswer = function() {
-                    self.operands = mathServices.operands;
 
                     self.numberOfOperands = self.operands.length;
                     var _correctAnswerDigits = _getAnswer(self.operands).split('');
@@ -109,7 +108,7 @@
                 };
 
                 var _askQuestion = function() {
-                    mathServices.getOperands(self.page);
+                    self.operands = mathServices.operands = mathServices.getOperands(self.page);
                     _buildExpectedAnswer();
                 };
 
