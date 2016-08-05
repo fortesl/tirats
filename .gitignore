@@ -1,8 +1,0 @@
-.idea
-.sass-cache
-.tmp
-bower_components
-node_modules
-dist/logic/tirats.templates.js
-node_modules
-bower_components
