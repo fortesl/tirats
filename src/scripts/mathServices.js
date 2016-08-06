@@ -106,7 +106,6 @@
         };
 
         return {
-            operands: _operands,
             getOperands: _getOperands,
             getUserName: _getUserName
         };

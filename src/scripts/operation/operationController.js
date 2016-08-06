@@ -79,7 +79,7 @@
                     for (_i = 0; _i < _zeroDigits; _i++) {//Answer has fewer digits fill 0s to the left
                         self.answer.push({
                             position: _i,
-                            correctValue: '0',
+                            correctValue: 0,
                             inputValue: ''
                         });
                     }
@@ -87,7 +87,7 @@
                     for (_i = 0; _i < _numberOfExpectedDigits; _i++) {
                         var _answerDigit = {
                             position: _zeroDigits + _i,
-                            correctValue: _correctAnswerDigits[_i],
+                            correctValue: Number(_correctAnswerDigits[_i]),
                             inputValue: ''
                         };
                         self.answer.push(_answerDigit);
@@ -108,7 +108,7 @@
                 };
 
                 var _askQuestion = function() {
-                    self.operands = mathServices.operands = mathServices.getOperands(self.page);
+                    self.operands = mathServices.getOperands(self.page);
                     _buildExpectedAnswer();
                 };
 
