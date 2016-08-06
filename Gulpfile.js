@@ -18,12 +18,12 @@
         deploy: '../tirats-gh-pages/dist/'
     };
 
-    gulp.task('build', ['buildAppThirdPartyJs', 'buildAppTemplates', 'buildAppJs', 'buildAppStyle']);
+    gulp.task('build', ['buildAppThirdPartyJs', 'buildAppJs', 'buildAppStyle']);
 
     gulp.task('dev', ['lint', 'serve', 'watch']);
 
     gulp.task('watch', function () {
-        gulp.watch(sources.app.concat('./src/templates/**/*.html'), ['lint', 'buildAppTemplates', 'buildAppJs']);
+        gulp.watch(sources.app.concat('./src/templates/**/*.html'), ['buildAppJs']);
         gulp.watch('./src/styles/**/*.scss', ['buildAppStyle']);
     });
 
@@ -67,7 +67,7 @@
     });
 
 
-    gulp.task('buildAppJs', ['buildAppTemplates'], function () {
+    gulp.task('buildAppJs', ['lint', 'buildAppTemplates'], function () {
         return gulp.src(sources.app)
             .pipe(plugins.jshint({lookup: false}))
             .pipe(plugins.jshint.reporter('default'))

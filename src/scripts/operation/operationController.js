@@ -5,9 +5,9 @@
     'use strict';
 
     angular.module('tirats').controller('operationController',
-        ['mathServices', 'toastr', '$cookies', '$location', '$routeParams', '$interval', '$scope',
-            function(mathServices, toastr, $cookies, $location, $routeParams, $interval, $scope) {
-                var self = this, _previousGoodAnswer=true;
+        ['mathServices', 'toastr', '$cookies', '$location', '$routeParams', 'timerService', '$scope',
+            function(mathServices, toastr, $cookies, $location, $routeParams, timerService, $scope) {
+                var self = this, _previousGoodAnswer=true, _timerIdleSeconds = 90;
 
                 var _setCookies = function() {
                     $cookies.put(self.page.id+'Score', self.userScore);
@@ -59,7 +59,7 @@
                             _correctAnswer += self.operands[i].value;
                         else if (self.page.operationSymbol === '-')
                             _correctAnswer -= self.operands[i].value;
-                        else if (self.page.operation === 'X')
+                        else if (self.page.operationSymbol === 'X')
                             _correctAnswer *= self.operands[i].value;
                     }
                     return _correctAnswer.toString();
@@ -112,55 +112,9 @@
                     _buildExpectedAnswer();
                 };
 
-                //=========================== timer service ================================
-                var _setupTimer = function() {
-                    self.page.timer = {isOn: false, idleMark: 90, stopper: undefined};
-                    self.page.timer.value = $cookies.get(self.page.id+'Time') || 0;
-                    _setTimerDisplay();
-                };
-
-                self.startTimer = function() {
-                    if (!self.page.timer.isOn) {
-                        self.page.timer.isOn = true;
-                        self.page.timer.idle = 0;
-                        self.page.timer.stopper = $interval(function () {
-                            self.page.timer.value++;
-                            self.page.timer.idle++;
-                            if (self.page.timer.idle >= self.page.timer.idleMark) {
-                                _stopTimer(self.page.timer.stopper);
-                                self.page.timer.value -= self.page.timer.idleMark;
-                                self.page.timer.idle = 0;
-                            }
-                            _setTimerDisplay();
-                        }, 1000);
-                    }
-                };
-
                 self.markTimerAsNotIdle = function() {
-                    self.page.timer.idle = 0;
+                    timerService.activityDetected();
                 };
-
-                var _stopTimer = function(stopper) {
-                    self.page.timer.isOn = false;
-                    if (angular.isDefined(stopper)) {
-                        $interval.cancel(stopper);
-                        stopper = undefined;
-                    }
-                };
-
-                var _setTimerDisplay = function() {
-                    self.page.timer.hours = _addZeroToTheLeft(Math.floor(self.page.timer.value / 3600));
-                    self.page.timer.minutes = _addZeroToTheLeft(Math.floor(self.page.timer.value / 60));
-                    self.page.timer.seconds = _addZeroToTheLeft(Math.floor(self.page.timer.value % 60));
-                };
-                
-                var _addZeroToTheLeft = function(value) {
-                    if (value < 10) {
-                        value = "0" + value;
-                    }
-                    return value;
-                };
-//                ================================= timer service ==================================== */
 
                 (function() {
                     self.page = $location.search();
@@ -168,14 +122,14 @@
                     self.page.id = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
                     self.page.scoreLabel='Score';
 
-                    _setupTimer();
                     _getCookies();
                     _askQuestion();
-                    self.startTimer();
+                    self.page.timer = timerService.startTimer($cookies.get(self.page.id+'Time') || 0);
+                    timerService.stopOnIdle(_timerIdleSeconds);
 
                     $scope.$on('$destroy', function() {
-                        // Make sure that the interval is destroyed too
-                        _stopTimer(self.page.timer.stopper);
+                        // Make sure that timer is stopped
+                        timerService.stopTimer();
                     });
                 })();
 

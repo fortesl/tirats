@@ -7,9 +7,7 @@
     var sources = {
         libs: {
             css: [
-                'bower_components/angular-multi-select/isteven-multi-select.css',
                 'bower_components/angular-toastr/dist/angular-toastr.css',
-                'bower_components/json-formatter/dist/json-formatter.css'
             ],
             js: [
                 'bower_components/jquery/dist/jquery.js',
@@ -24,6 +22,7 @@
             'src/scripts/app.js',
             'dist/logic/tirats.templates.js',
             'src/scripts/mathServices.js',
+             'src/scripts/timerService.js',
             'src/scripts/operation/**/*.js'
         ]
     };

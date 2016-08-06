@@ -13,8 +13,8 @@
         </div>
     </div>
 </div>
-<div class="row app-addition">
-    <div class="col-sm-6 app-operation">
+<div class="row app-operation">
+    <div class="col-sm-6">
         <form class="app-form" name="calcForm" novalidate ng-submit="operationCtrl.checkAnswer()">
             <div class="app-operand" ng-repeat="number in operationCtrl.operands">
                 <div ng-if="$index===operationCtrl.numberOfOperands -1">{{operationCtrl.page.operationSymbol}} {{number.value}}</div>
