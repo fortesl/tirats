@@ -69,8 +69,6 @@
 
     gulp.task('buildAppJs', ['lint', 'buildAppTemplates'], function () {
         return gulp.src(sources.app)
-            .pipe(plugins.jshint({lookup: false}))
-            .pipe(plugins.jshint.reporter('default'))
             .pipe(plugins.concat('tirats.js'))
             .pipe(gulp.dest(resourceFolders.distJs));
     });
