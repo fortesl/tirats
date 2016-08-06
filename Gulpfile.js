@@ -27,7 +27,7 @@
         gulp.watch('./src/styles/**/*.scss', ['buildAppStyle']);
     });
 
-    gulp.task('deploy', ['deployAppIndex', 'deployAppJs', 'deployAppThirdParty', 'deployAppIndex']);
+    gulp.task('deploy', ['deployAppIndex', 'deployAppJs', 'deployAppThirdPartyJs', 'deployAppIndex']);
 
     gulp.task('deployAppIndex', function() {
         return gulp.src(['./index.html'])
