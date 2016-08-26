@@ -102,7 +102,7 @@
                 };
 
                 self.setElementFocusAfterInput = function(position) {
-                    if (self.answer[position].inputValue) {
+                    if (typeof self.answer[position].inputValue === "number") {
                         self.setElementFocus(position-1);
                     }
                 };
