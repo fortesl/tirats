@@ -20,6 +20,7 @@
         },
         app: [
             'src/scripts/app.js',
+            'src/scripts/directives/tt-header.directive.js',
             'dist/logic/tirats.templates.js',
             'src/scripts/mathServices.js',
              'src/scripts/timerService.js',

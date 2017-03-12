@@ -23,7 +23,6 @@ $app-font-size-xs: $app-font-size - 4;
 
 .app-container {
   @extend .container;
-  max-width: 800px;
 }
 
 .app-lesson-jumbotron {

@@ -6,11 +6,10 @@
 
     var app = angular.module('tirats', ['ngRoute', 'ngCookies', 'toastr']);
 
-
     app.config(function($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'landing/landing.html'
+                    templateUrl: 'landing/tirats.html'
                 })
                 .when('/:operationId', {
                     controller: 'operationController as operationCtrl',

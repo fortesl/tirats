@@ -41,7 +41,9 @@
 
         var _activityDetected = function() {
             _timer.idle = 0;
-            _startTimer(_timer.value);
+            if (!_timer.isOn) {
+                _startTimer(_timer.value);
+            }
         };
 
         var _setTimerDisplay = function() {
