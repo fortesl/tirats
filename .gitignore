@@ -6,3 +6,4 @@ dist
 .tmp
 .sass-cache
 .idea/workspace.xml
+.DS_Store
