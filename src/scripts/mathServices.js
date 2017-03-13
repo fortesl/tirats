@@ -89,7 +89,7 @@
                 page.operationSymbol = 'X';
                 for (i=0; i< _numberOfOperands; i++) {
                     if (!i) {
-                        _operands.push({value: _randomIntFromInterval(_maxNumber2, _maxNumber)});
+                        _operands.push({value: _randomIntFromInterval(_minNumber, _maxNumber)});
                     }
                     else {
                         _operands.push({value: _randomIntFromInterval(_minNumber, _maxNumber2)});

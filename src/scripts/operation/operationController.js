@@ -7,7 +7,7 @@
     angular.module('tirats').controller('operationController',
         ['mathServices', 'toastr', '$cookies', '$location', '$routeParams', 'timerService', '$scope',
             function(mathServices, toastr, $cookies, $location, $routeParams, timerService, $scope) {
-                var self = this, _previousGoodAnswer=true, _timerIdleSeconds = 90;
+                var self = this, _previousGoodAnswer=true, _timerIdleSeconds = 60;
 
                 var _setCookies = function() {
                     $cookies.put(self.page.id+'Score', self.userScore);
@@ -47,7 +47,8 @@
                         }
                     }
                     _previousGoodAnswer = goodAnswer;
-                    self.setElementFocus(self.answer.length-1);
+                    var _startPosition = (self.page.leftToRight) ? 0 : self.answer.length-1;
+                    self.setElementFocus(_startPosition);
                     _setCookies();
                 };
 
@@ -95,15 +96,24 @@
                 };
 
                 self.setElementFocus = function(position) {
-                    window.setTimeout(function() {
-                        angular.element('.app-input.' + position).focus();
-                        angular.element('.app-input.' + position).select();
-                    },100);
+                    if (position <= self.answer.length-1) {
+                        window.setTimeout(function() {
+                            angular.element('.app-input.' + position).focus();
+                            angular.element('.app-input.' + position).select();
+                        },50);
+                    }
                 };
 
                 self.setElementFocusAfterInput = function(position) {
-                    if (typeof self.answer[position].inputValue === "number") {
-                        self.setElementFocus(position-1);
+                    if (!self.page.leftToRight) {
+                        if ((position > 0) && typeof self.answer[position].inputValue === "number") {
+                            self.setElementFocus(position-1);
+                        }
+                    }
+                    else {
+                        if ((position < self.answer.length-1) && typeof self.answer[position].inputValue === "number") {
+                            self.setElementFocus(position+1);
+                        }                        
                     }
                 };
 
@@ -121,6 +131,7 @@
                     self.page.operation = $routeParams.operationId;
                     self.page.id = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
                     self.page.scoreLabel='Score';
+                    self.page.leftToRight = (self.page.level === 'M1') ? true: false;
 
                     _getCookies();
                     _askQuestion();

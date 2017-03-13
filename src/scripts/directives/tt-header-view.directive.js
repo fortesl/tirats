@@ -1,8 +1,8 @@
 (function() {
     'use strict';
-    angular.module('tirats').directive('ttHeader', [ttHeader]);
+    angular.module('tirats').directive('ttHeaderView', [ttHeaderView]);
 
-    function ttHeader() {
+    function ttHeaderView() {
         return {
             restrict: 'E',
             templateUrl: 'tt-header.template.html'

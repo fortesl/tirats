@@ -19,12 +19,9 @@
             ]
         },
         app: [
-            'src/scripts/app.js',
-            'src/scripts/directives/tt-header.directive.js',
+            'src/app.js',
+            'src/scripts/**/*.js',
             'dist/logic/tirats.templates.js',
-            'src/scripts/mathServices.js',
-             'src/scripts/timerService.js',
-            'src/scripts/operation/**/*.js'
         ]
     };
 
