@@ -59,11 +59,21 @@
             return value;
         };
 
+        var _getTimer = function(seconds) {
+            if ("undefined" !== typeof seconds) {
+                _timer = {};
+                _timer.value = seconds;
+            }
+            _setTimerDisplay();
+            return _timer.hours + ':' + _timer.minutes + ':' + _timer.seconds;
+        };
+
         return {
             startTimer: _startTimer,
             stopTimer: _stopTimer,
             stopOnIdle: _stopOnIdle,
-            activityDetected: _activityDetected
+            activityDetected: _activityDetected,
+            getTimer: _getTimer
         };
     }]);
 

@@ -1,11 +1,12 @@
-  <div class="panel-group" id="accordion">
+<tt-header-view></tt-header-view>
+<div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
           <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" data-target="#addition">Addition</button>
         </h4> 
       </div>
-      <div id="addition" class="panel-collapse collapse">
+      <div id="addition" class="panel-collapse collapse" ng-class="{in: appCtrl.appLastActivity.charAt(0)==='A'}">
         <tt-addition-view></tt-addition-view>
       </div>
     </div>
@@ -15,7 +16,7 @@
           <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" data-target="#subtraction">Subtration</button>
         </h4>
       </div>
-      <div id="subtraction" class="panel-collapse collapse">
+      <div id="subtraction" class="panel-collapse collapse" ng-class="{in: appCtrl.appLastActivity.charAt(0)==='S'}">
         <tt-subtraction-view></tt-subtraction-view>
       </div>
     </div>
@@ -25,7 +26,7 @@
           <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" data-target="#multiplication">Multiplication</button>
         </h4>
       </div>
-      <div id="multiplication" class="panel-collapse collapse">
+      <div id="multiplication" class="panel-collapse collapse" ng-class="{in: appCtrl.appLastActivity.charAt(0)==='M'}">
         <tt-multiplication-view></tt-multiplication-view>
       </div>
     </div>
@@ -35,7 +36,7 @@
           <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="collapse" data-parent="#accordion" data-target="#division">Division</button>
         </h4>
       </div>
-      <div id="division" class="panel-collapse collapse">
+      <div id="division" class="panel-collapse collapse" ng-class="{in: appCtrl.appLastActivity.charAt(0)==='D'}">
         <tt-division-view></tt-division-view>
       </div>
     </div>

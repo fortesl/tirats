@@ -1,9 +1,23 @@
 <ul class="panel-body list-group">    
-    <li class="list-group-item"><a href="#/Multiplication?max=9&digit=1&level=M1">Multiplication - Number to 9 by 1 digit</a></li>
-    <li class="list-group-item"><a href="#/Multiplication?max=100&digit=1&level=M2">Multiplication - Numbers to 99 by 1 digit</a></li>
-    <li class="list-group-item"><a href="#/Multiplication?max=1000&digit=1&level=M3">Multiplication - Numbers to 999 by 1 digit</a></li>
-    <li class="list-group-item"><a href="#/Multiplication?max=10000&digit=1&level=M4">Multiplication - Numbers to 9999 by 1 digit</a></li>
-    <li class="list-group-item"><a href="#/Multiplication?max=100&digit=2&level=M5">Multiplication - Numbers to 99 by 2 digit</a></li>
-    <li class="list-group-item"><a href="#/Multiplication?max=1000&digit=2&level=M6">Multiplication - Numbers to 999 by 2 digit</a></li>
-    <li class="list-group-item"><a href="#/Multiplication?max=10000&digit=2&level=M7">Multiplication - Numbers to 9999 by 2 digit</a></li>
+    <li class="list-group-item"><a href="#/Multiplication?max=9&digit=1&level=M1">Multiplication - Number to 9 by 1 digit</a> 
+        <div ng-if="appCtrl.hasScore('MultiplicationM1')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('MultiplicationM1')}}" class="app-badge">{{ appCtrl.getScore('MultiplicationM1') }}</div></li>
+    <li class="list-group-item"><a href="#/Multiplication?max=100&digit=1&level=M2">Multiplication - Numbers to 99 by 1 digit</a> 
+        <div ng-if="appCtrl.hasScore('MultiplicationM2')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('MultiplicationM2')}}" class="app-badge">{{ appCtrl.getScore('MultiplicationM2') }}</div></li>
+    <li class="list-group-item"><a href="#/Multiplication?max=1000&digit=1&level=M3">Multiplication - Numbers to 999 by 1 digit</a> 
+        <div ng-if="appCtrl.hasScore('MultiplicationM3')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('MultiplicationM3')}}" class="app-badge">{{ appCtrl.getScore('MultiplicationM3') }}</div></li>
+    <li class="list-group-item"><a href="#/Multiplication?max=10000&digit=1&level=M4">Multiplication - Numbers to 9999 by 1 digit</a> 
+        <div ng-if="appCtrl.hasScore('MultiplicationM4')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('MultiplicationM4')}}" class="app-badge">{{ appCtrl.getScore('MultiplicationM4') }}</div></li>
+    <li class="list-group-item"><a href="#/Multiplication?max=100&digit=2&level=M5">Multiplication - Numbers to 99 by 2 digit</a> 
+        <div ng-if="appCtrl.hasScore('MultiplicationM5')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('MultiplicationM5')}}" class="app-badge">{{ appCtrl.getScore('MultiplicationM5') }}</div></li>
+    <li class="list-group-item"><a href="#/Multiplication?max=1000&digit=2&level=M6">Multiplication - Numbers to 999 by 2 digit</a> 
+        <div ng-if="appCtrl.hasScore('MultiplicationM6')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('MultiplicationM6')}}" class="app-badge">{{ appCtrl.getScore('MultiplicationM6') }}</div></li>
+    <li class="list-group-item"><a href="#/Multiplication?max=10000&digit=2&level=M7">Multiplication - Numbers to 9999 by 2 digit</a> 
+        <div ng-if="appCtrl.hasScore('MultiplicationM7')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('MultiplicationM7')}}" class="app-badge">{{ appCtrl.getScore('MultiplicationM7') }}</div></li>
 </ul>

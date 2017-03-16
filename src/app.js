@@ -9,7 +9,8 @@
     app.config(function($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'landing/tirats.html'
+                    templateUrl: 'landing/tirats.html',
+                    controller: 'appController as appCtrl'
                 })
                 .when('/:operationId', {
                     controller: 'operationController as operationCtrl',
@@ -17,6 +18,9 @@
                 })
                 .otherwise({redirectTo: '/'});
         });
+
+    app.constant('APP_TITLE', "Tirat's Math");
+    app.value('APP_USERNAME', 'Tirat');
 
     app.config(function(toastrConfig) {
         angular.extend(toastrConfig, {

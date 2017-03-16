@@ -1,6 +1,6 @@
 <div class="app-lesson-jumbotron">
     <div class="app-jumbotron-content">
-        <div class="app-user-name"><a href="#/">{{::operationCtrl.page.userName}}</a></div>
+        <div class="app-user-name"><a href="#/">{{::operationCtrl.page.appTitle}}</a></div>
         <div class="app-lesson-title">{{::operationCtrl.page.title}}</div>
     </div>
 </div>
@@ -9,7 +9,7 @@
         <span title="{{operationCtrl.page.title + ' - ' + operationCtrl.page.description}}">{{::operationCtrl.page.level}}</span>
         {{::operationCtrl.page.scoreLabel}}: {{operationCtrl.userScore}}
         <div>
-            <span>{{operationCtrl.page.timer.hours}}:</span><span>{{operationCtrl.page.timer.minutes}}:</span><span>{{operationCtrl.page.timer.seconds}}</span>
+            <span>{{operationCtrl.page.level}} Timer: {{ operationCtrl.getTimer() }}
         </div>
     </div>
 </div>

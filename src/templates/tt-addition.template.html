@@ -1,7 +1,17 @@
 <ul class="panel-body list-group">
-    <li class="list-group-item"><a href="#/Addition?digit=1&max=9&min=0&level=A1">Addition - 1 digit</a></li>
-    <li class="list-group-item"><a href="#/Addition?digit=2&max=99&min=10&level=A2">Addition - 2 digit</a></li>
-    <li class="list-group-item"><a href="#/Addition?digit=3&max=999&min=100&level=A3">Addition - 3 digit</a></li>
-    <li class="list-group-item"><a href="#/Addition?digit=4&max=9999&min=1000&level=A4">Addition - 4 digit</a></li>
-    <li class="list-group-item"><a href="#/Addition?custom=true&max2=9&min2=0&max=19&min=0&level=AC">Addition - custom</a></li>
+    <li class="list-group-item"><a href="#/Addition?digit=1&max=9&min=0&level=A1">Addition - 1 digit</a> 
+        <div ng-if="appCtrl.hasScore('AdditionA1')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('AdditionA1')}}" class="app-badge">{{ appCtrl.getScore('AdditionA1') }}</div></li>
+    <li class="list-group-item"><a href="#/Addition?digit=2&max=99&min=10&level=A2">Addition - 2 digit</a> 
+        <div ng-if="appCtrl.hasScore('AdditionA2')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('AdditionA2')}}" class="app-badge">{{ appCtrl.getScore('AdditionA2') }}</div></li>
+    <li class="list-group-item"><a href="#/Addition?digit=3&max=999&min=100&level=A3">Addition - 3 digit</a> 
+        <div ng-if="appCtrl.hasScore('AdditionA3')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('AdditionA3')}}" class="app-badge">{{ appCtrl.getScore('AdditionA3') }}</div></li>
+    <li class="list-group-item"><a href="#/Addition?digit=4&max=9999&min=1000&level=A4">Addition - 4 digit</a> 
+        <div ng-if="appCtrl.hasScore('AdditionA4')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('AdditionA4')}}" class="app-badge">{{ appCtrl.getScore('AdditionA4') }}</div></li>
+    <li class="list-group-item"><a href="#/Addition?custom=true&max2=9&min2=0&max=19&min=0&level=AC">Addition - custom</a> 
+        <div ng-if="appCtrl.hasScore('AdditionAC')" ng-click="appCtrl.showPopover()" title="Current Score" data-toggle="popover" 
+            data-content="Timer: {{appCtrl.getTimer('AdditionAC')}}" class="app-badge">{{ appCtrl.getScore('AdditionAC') }}</div></li>
 </ul>

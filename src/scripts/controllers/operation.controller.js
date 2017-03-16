@@ -5,8 +5,8 @@
     'use strict';
 
     angular.module('tirats').controller('operationController',
-        ['mathServices', 'toastr', '$cookies', '$location', '$routeParams', 'timerService', '$scope',
-            function(mathServices, toastr, $cookies, $location, $routeParams, timerService, $scope) {
+        ['mathServices', 'toastr', '$cookies', '$location', '$routeParams', 'timerService', '$scope', 'APP_TITLE',
+            function(mathServices, toastr, $cookies, $location, $routeParams, timerService, $scope, APP_TITLE) {
                 var self = this, _previousGoodAnswer=true, _timerIdleSeconds = 60;
 
                 var _setCookies = function() {
@@ -126,14 +126,20 @@
                     timerService.activityDetected();
                 };
 
+                self.getTimer = function() {
+                    return timerService.getTimer();
+                };
+
                 (function() {
                     self.page = $location.search();
+                    self.page.appTitle = APP_TITLE;
                     self.page.operation = $routeParams.operationId;
                     self.page.id = mathServices.getUserName(self.page)+self.page.operation+self.page.level;
                     self.page.scoreLabel='Score';
                     self.page.leftToRight = (self.page.level === 'M1') ? true: false;
 
                     _getCookies();
+                    $cookies.put('LastActivity', self.page.level);
                     _askQuestion();
                     self.page.timer = timerService.startTimer($cookies.get(self.page.id+'Time') || 0);
                     timerService.stopOnIdle(_timerIdleSeconds);
